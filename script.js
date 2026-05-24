@@ -6,7 +6,7 @@
 async function fetchVerse() {
     try {
         // Fetching from the dynamic random verse stream
-        const response = await fetch('https://bible-api.com/?random=verse' + '&t=' + new Date().getTime()); 
+        const response = await fetch('https://bible-api.com/?random=verse&t=${new Date().getTime()}'); 
         const data = await response.json();
         
         let finalVerseText = "";
