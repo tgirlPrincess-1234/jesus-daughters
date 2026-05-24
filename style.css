@@ -1,0 +1,145 @@
+/* Mobile-First CSS Architecture */
+:root {
+    --bg-bright: #ebd1e3;          
+    --card-dark: #23083b;          
+    --accent-pink: #e28ac5;        
+    --text-light: #ffffff;
+    --text-muted: #bfaec4;
+    --system-green: #10b981;
+    --system-red: #ef4444;
+}
+
+body {
+    background-color: var(--bg-bright);
+    color: var(--text-light);
+    font-family: '-apple-system', BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Toast Dropdown Alerts */
+.toast {
+    position: fixed;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--card-dark);
+    color: var(--text-light);
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-weight: 600;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    border: 2px solid var(--accent-pink);
+    z-index: 1000;
+    transition: top 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.toast.show { top: 20px; }
+
+header {
+    width: 100%;
+    max-width: 600px; /* Locked to clean mobile viewport width width */
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.logo-container { display: flex; align-items: center; gap: 10px; }
+.brand-logo-img { width: 36px; height: 36px; border-radius: 50%; background-color: var(--card-dark); }
+.logo-text { font-weight: 900; font-size: 1.4rem; color: var(--card-dark); letter-spacing: -0.5px; }
+
+nav a {
+    color: var(--card-dark);
+    text-decoration: none;
+    margin-left: 12px;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+/* Hero Section Style Layout */
+.hero-section {
+    width: 100%;
+    background: linear-gradient(135deg, var(--card-dark) 0%, #4c127a 100%);
+    padding: 45px 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    border-bottom: 5px solid var(--accent-pink);
+}
+
+.verse-card { width: 100%; max-width: 500px; text-align: center; }
+.verse-text { font-size: 1.2rem; font-style: italic; line-height: 1.6; margin-bottom: 15px; }
+.verse-footer { display: flex; justify-content: center; align-items: center; gap: 12px; }
+.verse-ref { font-size: 0.8rem; color: var(--card-dark); background-color: var(--accent-pink); padding: 5px 14px; border-radius: 20px; font-weight: 700; text-transform: uppercase; }
+
+.copy-btn { background: transparent; border: none; color: var(--accent-pink); cursor: pointer; padding: 5px; display: flex; }
+
+/* Main Content Floating Containers */
+main {
+    width: 92%;
+    max-width: 500px;
+    margin-top: -25px;
+}
+
+.section-card {
+    background-color: var(--card-dark);
+    padding: 22px;
+    border-radius: 22px;
+    margin-bottom: 20px;
+    box-shadow: 0 12px 28px rgba(35, 8, 59, 0.15);
+    box-sizing: border-box;
+}
+
+.dynamic-gradient-border { border-top: 5px solid var(--accent-pink); }
+h2 { color: var(--accent-pink); margin-top: 0; font-size: 1.3rem; font-weight: 800; }
+p { line-height: 1.5; color: #ebdff0; font-size: 0.95rem; }
+.manifesto-placeholder { font-style: italic; color: var(--text-muted); }
+
+/* Forms Setup */
+.prayer-form { display: flex; flex-direction: column; gap: 12px; margin-top: 15px; }
+.prayer-form textarea { background-color: #1a052e; border: 2px solid #3f1566; border-radius: 12px; padding: 12px; color: var(--text-light); font-family: inherit; font-size: 0.95rem; resize: none; outline: none; }
+.prayer-form textarea:focus { border-color: var(--accent-pink); }
+
+.submit-btn { background: linear-gradient(135deg, var(--accent-pink) 0%, #c96ea9 100%); color: var(--card-dark); border: none; padding: 12px 24px; border-radius: 10px; font-weight: 800; font-size: 0.95rem; align-self: flex-start; }
+
+/* --- TRIVIA SLIDER LAYOUT COMPONENTS --- */
+.trivia-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; font-size: 0.85rem; color: var(--text-muted); font-weight: bold; }
+.dots-container { display: flex; gap: 6px; }
+.dot { width: 8px; height: 8px; background-color: #3f1566; border-radius: 50%; transition: background-color 0.3s; }
+.dot.active { background-color: var(--accent-pink); }
+
+.quiz-options { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
+.option-btn { background-color: #1a052e; border: 2px solid #3f1566; color: var(--text-light); padding: 14px; border-radius: 12px; text-align: left; font-size: 0.95rem; font-weight: 600; outline: none; transition: all 0.2s ease; -webkit-tap-highlight-color: transparent; }
+
+/* Status Response States */
+.option-btn.correct-flash { background-color: var(--system-green) !important; border-color: var(--system-green) !important; }
+.option-btn.wrong-flash { background-color: var(--system-red) !important; border-color: var(--system-red) !important; }
+
+/* Score Screen Panel Dashboard */
+.score-screen {
+    display: none; /* Inactive at start */
+    flex-direction: column;
+    align-items: center;
+    padding: 25px;
+    border-radius: 16px;
+    text-align: center;
+    box-sizing: border-box;
+}
+.score-screen.green-pass { background: linear-gradient(135deg, #064e3b 0%, var(--system-green) 100%); border: 2px solid #059669; }
+.score-screen.red-fail { background: linear-gradient(135deg, #7f1d1d 0%, var(--system-red) 100%); border: 2px solid #dc2626; }
+
+.score-display { font-size: 3rem; font-weight: 900; margin: 15px 0; letter-spacing: -1px; }
+.retry-btn { background-color: rgba(255,255,255,0.2); border: 2px solid #ffffff; color: #ffffff; padding: 10px 20px; border-radius: 10px; font-weight: 700; cursor: pointer; margin-top: 10px; }
+
+/* Spotify Anchor Card */
+.spotify-redirect-card { background-color: #1a052e; border: 2px solid #3f1566; border-radius: 14px; padding: 15px; display: flex; justify-content: space-between; align-items: center; margin-top: 15px; }
+.spotify-info { display: flex; align-items: center; gap: 12px; }
+.music-icon { font-size: 1.6rem; }
+.spotify-info h3 { margin: 0; font-size: 1rem; color: var(--text-light); }
+.spotify-info p { margin: 4px 0 0 0; font-size: 0.85rem; color: var(--text-muted); }
+.play-arrow { font-size: 1.2rem; color: var(--accent-pink); }

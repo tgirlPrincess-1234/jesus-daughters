@@ -1,0 +1,265 @@
+/* Mobile-First Anonymous Page Layout Architecture */
+:root {
+    --bg-bright: #ebd1e3;          
+    --card-dark: #23083b;          
+    --accent-pink: #e28ac5;        
+    --text-light: #ffffff;
+    --text-muted: #bfaec4;
+}
+
+body {
+    background-color: var(--bg-bright);
+    color: var(--text-light);
+    font-family: '-apple-system', BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   NAVIGATION BAR HEADER
+   ========================================================================== */
+header {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.logo-link-wrapper { text-decoration: none; cursor: pointer; }
+.logo-container { display: flex; align-items: center; gap: 12px; }
+.brand-logo-img { width: 46px; height: 46px; border-radius: 50%; background-color: var(--card-dark); object-fit: cover; }
+.logo-text { font-weight: 900; font-size: 1.4rem; color: var(--card-dark); letter-spacing: -0.5px; }
+
+nav a {
+    color: var(--card-dark);
+    text-decoration: none;
+    margin-left: 12px;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+nav a.active-nav { border-bottom: 2px solid var(--card-dark); padding-bottom: 2px; }
+
+/* ==========================================================================
+   TITLE & SEARCH COMPONENT
+   ========================================================================== */
+main {
+    width: 92%;
+    max-width: 500px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.title-section {
+    padding: 15px 0 10px;
+    text-align: left;
+}
+
+.page-main-title {
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--card-dark);
+    margin: 0 0 6px 0;
+}
+
+.page-subtitle {
+    font-size: 0.92rem;
+    color: var(--card-dark);
+    opacity: 0.8;
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* SEARCH BOX CONTAINER */
+.search-panel-card {
+    background-color: var(--card-dark);
+    padding: 14px;
+    border-radius: 18px;
+    margin: 15px 0 20px 0;
+    box-shadow: 0 8px 24px rgba(35, 8, 59, 0.12);
+}
+
+.search-wrapper {
+    display: flex;
+    align-items: center;
+    background-color: #1a052e;
+    border: 2px solid #3f1566;
+    border-radius: 12px;
+    padding: 10px 14px;
+    gap: 10px;
+}
+
+.search-icon { font-size: 1.1rem; }
+
+#feed-search-bar {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: var(--text-light);
+    font-size: 0.95rem;
+    outline: none;
+}
+#feed-search-bar::placeholder { color: rgba(255, 255, 255, 0.35); }
+
+/* ==========================================================================
+   DYNAMIC ANONYMOUS MESSAGE FEED CARDS
+   ========================================================================== */
+.message-stream-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-bottom: 50px;
+}
+
+.anon-feed-card {
+    background-color: var(--card-dark);
+    border-radius: 22px;
+    padding: 20px;
+    box-shadow: 0 10px 25px rgba(35, 8, 59, 0.15);
+    display: flex;
+    flex-direction: column;
+}
+
+.anon-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 8px;
+}
+
+.anon-id-tag {
+    color: var(--accent-pink);
+    font-weight: 800;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+}
+
+.anon-msg-text {
+    color: #ebdff0;
+    font-size: 0.98rem;
+    line-height: 1.5;
+    margin: 0 0 12px 0;
+    word-break: break-word;
+}
+
+/* ==========================================================================
+   INTERACTIVE ACTION PANEL BUTTONS
+   ========================================================================== */
+.card-actions-bar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 12px;
+}
+
+.toggle-reply-btn {
+    background: transparent;
+    border: 1px solid rgba(226, 138, 197, 0.4);
+    color: var(--accent-pink);
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.toggle-reply-btn:active {
+    background-color: var(--accent-pink);
+    color: var(--card-dark);
+}
+
+/* INTERACTIVE REPLY INPUT TRAY COMPONENT */
+.reply-form-tray {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 15px;
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+    padding-top: 12px;
+}
+
+.reply-textarea {
+    width: 100%;
+    background-color: #1a052e;
+    border: 1px solid #3f1566;
+    border-radius: 12px;
+    padding: 10px;
+    color: #ffffff;
+    font-size: 0.9rem;
+    outline: none;
+    resize: none;
+    box-sizing: border-box;
+}
+
+.submit-reply-btn {
+    background-color: var(--accent-pink);
+    color: var(--card-dark);
+    border: none;
+    padding: 8px 14px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 800;
+    align-self: flex-end;
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   NESTED OFFICIAL RESPONSES SUB-PANEL
+   ========================================================================== */
+.replies-box-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background-color: #1a052e;
+    padding: 14px;
+    border-radius: 14px;
+    border-left: 4px solid var(--accent-pink);
+}
+
+.reply-row {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 8px;
+}
+.reply-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.reply-header-title {
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--accent-pink);
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+}
+
+.reply-body-text {
+    color: #ffffff;
+    font-size: 0.92rem;
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* EMPTY BLANK CONSOLE SCREEN VIEW */
+.empty-state-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+}
+.empty-icon { font-size: 2.5rem; margin-bottom: 10px; opacity: 0.7; }
+.empty-state-view h3 { color: var(--card-dark); margin: 0 0 6px 0; font-size: 1.2rem; }
+.empty-state-view p { color: var(--card-dark); opacity: 0.7; font-size: 0.9rem; margin: 0; }

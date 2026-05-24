@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jesus' Daughters Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="toast-notification" class="toast">Copied to clipboard! 🌟</div>
+
+    <header>
+        <a href="aboutus.html" style="text-decoration: none; cursor: pointer;">
+            <div class="logo-container">
+                <img src="jdlogo.jpeg" alt="JD" class="brand-logo-img">
+                <div class="logo-text">JESUS' DAUGHTERS</div>
+            </div>
+        </a>
+        <nav>
+            <a href="aboutus.html">About Us</a>
+            <a href="anonymous.html">Anonymous</a>
+        </nav>
+    </header>
+
+    <section class="hero-section">
+        <div class="verse-card">
+            <p class="verse-text" id="bible-verse">Loading today's fire... 🔥</p>
+            <div class="verse-footer">
+                <span class="verse-ref" id="bible-ref">Please wait</span>
+                <button class="copy-btn" id="copy-btn" title="Copy Verse">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <section class="section-card dynamic-gradient-border">
+            <h2>Our Vision Board</h2>
+            <p class="manifesto-placeholder">Welcome to Jesus' Daughters. We believe building faith should be as real as the challenges we, teenagers, face. We've created a simple home for your spiritual journey: get your daily verse, find your sound, and join a community that isn't afraid to ask the hard questions.</p>
+        </section>
+
+        <section class="section-card">
+            <h2>Drop an Unfiltered Topic 🤫</h2>
+            <p>Got a heavy question about life, school, relationships, or things you can't ask out loud? Drop it here completely anonymously. It will display directly on our <strong>Anonymous</strong> page feed later.</p>
+            
+            <form class="prayer-form" id="realtalk-form">
+                <textarea id="realtalk-input" rows="4" placeholder="Type anonymously... layout your heart out." required></textarea>
+                <button type="submit" class="submit-btn">Drop on Anonymous</button>
+            </form>
+        </section>
+
+        <section class="section-card">
+            <h2>Daily Bible Trivia Spark ⚡</h2>
+            <p>3 Questions. Let's see your scripture depth today!</p>
+            
+            <div class="trivia-box" id="trivia-box">
+                <div class="trivia-header">
+                    <span id="question-number">Question 1/3</span>
+                    <div class="dots-container">
+                        <span class="dot active"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                </div>
+
+                <div class="trivia-slider">
+                    <h3 id="trivia-question">Loading challenge...</h3>
+                    <div class="quiz-options" id="trivia-options">
+                        </div>
+                </div>
+            </div>
+
+            <div class="score-screen" id="score-screen">
+                <h3 id="score-headline">Quiz Complete!</h3>
+                <div class="score-display"><span id="score-num">0</span> / 3</div>
+                <p id="score-comment">Keep diving deep into the Word!</p>
+                <button class="retry-btn" onclick="location.reload()">Reset for Today</button>
+            </div>
+        </section>
+
+        <section class="section-card">
+            <h2>Weekly Rotation 🎧</h2>
+            <p>Setting the atmosphere. Tap below to tune in directly to our public playlist on Spotify and level up your vibe.</p>
+            
+            <div class="spotify-redirect-card" id="spotify-card">
+                <div class="spotify-info">
+                    <span class="music-icon">🎵</span>
+                    <div>
+                        <h3>Edify your Spirit</h3>
+                        <p>Curated anthems from Limoblaze, Caleb Gordon, and more.</p>
+                    </div>
+                </div>
+                <span class="play-arrow">▶</span>
+            </div>
+        </section>
+    </main>
+
+    <script src="questions.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

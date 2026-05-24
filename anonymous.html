@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anonymous Feed - Jesus' Daughters</title>
+    <link rel="stylesheet" href="anonymous.css">
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo-link-wrapper">
+            <div class="logo-container">
+                <img src="jdlogo.jpeg" alt="JD" class="brand-logo-img">
+                <div class="logo-text">Jesus' Daughters</div>
+            </div>
+        </a>
+        <nav>
+            <a href="aboutus.html">About Us</a>
+            <a href="anonymous.html" class="active-nav">Anonymous</a>
+            <a href="index.html">Home</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="title-section">
+            <h1 class="page-main-title">Tidbits & Suggestions</h1>
+            <p class="page-subtitle">Search your tracking code or tap any card to reply and encourage a believer</p>
+        </section>
+
+        <section class="search-panel-card">
+            <div class="search-wrapper">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="feed-search-bar" placeholder="Search by date or number (e.g., 24/05/26 #001)...">
+            </div>
+        </section>
+
+        <section class="message-stream-container" id="message-stream">
+            <div class="empty-state-view" id="empty-state">
+                <span class="empty-icon">🕊️</span>
+                <h3>The stream is quiet...</h3>
+                <p>Drop an anonymous topic from the home dashboard to ignite the feed!</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="anonymous.js"></script>
+</body>
+</html>
