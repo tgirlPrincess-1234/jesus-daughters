@@ -5,76 +5,40 @@
 // 1. DYNAMIC RANDOM VERSE API CONTROLLER WITH DAILY FALLBACKS
 async function fetchVerse() {
     try {
-        // Fetching from a reliable, free random verse API (JSON format)
         const response = await fetch('https://labs.bible.org/api/?passage=random&type=json'); 
         const data = await response.json();
         
         let finalVerseText = "";
         let finalVerseRef = "";
 
-        // FORMAT 1: Labs Bible API returns an array containing a single verse object
         if (data && data.length > 0) {
             finalVerseText = data[0].text;
             finalVerseRef = `${data[0].bookname} ${data[0].chapter}:${data[0].verse}`;
-        } 
-        // FORMAT 2: Check if it returns a direct text object (keeping your original parser safety intact)
-        else if (data && data.text) {
+        } else if (data && data.text) {
             finalVerseText = data.text;
             finalVerseRef = data.reference;
         }
 
-        // SMART FALLBACK TRIGGER: If the API fails, is blank, or says "undefined"
         if (!finalVerseText || !finalVerseRef || finalVerseText.includes("undefined")) {
-            
-            // Get the current day of the week (0 = Sunday, 1 = Monday, etc.)
             const dayOfWeek = new Date().getDay();
-            
-            // A dedicated powerhouse verse for every single day of the week
             const weeklyFallbackBank = [
-                {
-                    text: "And it shall come to pass afterward, that I will pour out my Spirit upon all flesh; and your sons and your daughters shall prophesy...",
-                    ref: "Joel 2:28"
-                }, // Sunday
-                {
-                    text: "Don’t let anyone look down on you because you are young, but set an example for the believers in speech, in conduct, in love, in faith and in purity.",
-                    ref: "1 Timothy 4:12"
-                }, // Monday
-                {
-                    text: "For I know the plans I have for you,” declares the Lord, “plans to prosper you and not to harm you, plans to give you hope and a future.",
-                    ref: "Jeremiah 29:11"
-                }, // Tuesday
-                {
-                    text: "The Lord your God is with you, the Mighty Warrior who saves. He will take great delight in you; in his love he will no longer rebuke you, but will rejoice over you with singing.",
-                    ref: "Zephaniah 3:17"
-                }, // Wednesday
-                {
-                    text: "But those who hope in the Lord will renew their strength. They will soar on wings like eagles; they will run and not grow weary, they will walk and not be faint.",
-                    ref: "Isaiah 40:31"
-                }, // Thursday
-                {
-                    text: "I can do all this through him who gives me strength.",
-                    ref: "Philippians 4:13"
-                }, // Friday
-                {
-                    text: "For God has not given us a spirit of fear and timidity, but of power, love, and self-discipline.",
-                    ref: "2 Timothy 1:7"
-                }  // Saturday
+                { text: "And it shall come to pass afterward, that I will pour out my Spirit upon all flesh...", ref: "Joel 2:28" },
+                { text: "Don’t let anyone look down on you because you are young...", ref: "1 Timothy 4:12" },
+                { text: "For I know the plans I have for you,” declares the Lord...", ref: "Jeremiah 29:11" },
+                { text: "The Lord your God is with you, the Mighty Warrior who saves...", ref: "Zephaniah 3:17" },
+                { text: "But those who hope in the Lord will renew their strength...", ref: "Isaiah 40:31" },
+                { text: "I can do all this through him who gives me strength.", ref: "Philippians 4:13" },
+                { text: "For God has not given us a spirit of fear and timidity...", ref: "2 Timothy 1:7" }
             ];
-
-            // Assign the verse matching today's exact day of the week
             finalVerseText = weeklyFallbackBank[dayOfWeek].text;
             finalVerseRef = weeklyFallbackBank[dayOfWeek].ref;
         }
 
-        // Clean up any weird HTML tag formatting (like <b> tags) or spacing formats from the API data stream
         finalVerseText = finalVerseText.replace(/<\/?[^>]+(>|$)/g, "").trim().replace(/\s+/g, ' ');
-
-        // Safely project the finalized copy to the UI canvas
         document.getElementById('bible-verse').innerText = `"${finalVerseText}"`;
         document.getElementById('bible-ref').innerText = finalVerseRef;
 
     } catch (error) {
-        // Absolute last-resort emergency backup if the entire system stalls
         document.getElementById('bible-verse').innerText = "Don’t let anyone look down on you because you are young, but set an example...";
         document.getElementById('bible-ref').innerText = "1 Timothy 4:12";
     }
@@ -101,7 +65,6 @@ function initializeSpotifyLink() {
     const spotifyCard = document.getElementById('spotify-card');
     if (spotifyCard) {
         spotifyCard.addEventListener('click', () => {
-            // Paste your actual Spotify playlist link inside the quotes below
             window.open('https://open.spotify.com/playlist/0tBzBze2jVppMi06hro6jz?si=pCB4w8RvRg6xkA2HKX5png&pi=ElpeASrYTBGTZ', '_blank');
         });
     }
@@ -120,35 +83,27 @@ function initializeRealTalkSubmission() {
 
             if (!msgText) return;
 
-            // A. Fetch current timestamp from your mobile device clock
             const now = new Date();
             const yy = String(now.getFullYear()).slice(-2);
             const mm = String(now.getMonth() + 1).padStart(2, '0');
             const dd = String(now.getDate()).padStart(2, '0');
-            const dateString = `${dd}/${mm}/${yy}`; // Produces exactly "24/05/26"
+            const dateString = `${dd}/${mm}/${yy}`;
 
-            // B. Fetch existing database storage array or start fresh
             let currentFeed = JSON.parse(localStorage.getItem("jds_anon_feed")) || [];
-
-            // C. Filter database to check how many topics have been dropped ALREADY today
             const itemsToday = currentFeed.filter(item => item.id.startsWith(dateString)).length;
             
-            // D. Increment sequence string by 1 and format into #001 padding syntax
             const nextSequence = String(itemsToday + 1).padStart(3, '0');
             const generatedIdToken = `${dateString} #${nextSequence}`;
 
-            // E. Create the new dynamic object entry
             const newAnonymousEntry = {
                 id: generatedIdToken,
                 text: msgText,
-                replies: [] // Blank placeholder array ready for official manual responses later
+                replies: []
             };
 
-            // F. Inject new entry directly to the top of the timeline array
             currentFeed.unshift(newAnonymousEntry);
             localStorage.setItem("jds_anon_feed", JSON.stringify(currentFeed));
 
-            // G. Visual notification toast dropdown feedback on screen
             const toast = document.getElementById('toast-notification');
             if (toast) {
                 toast.textContent = `Dropped! Code: ${generatedIdToken} 🤫`;
@@ -156,7 +111,6 @@ function initializeRealTalkSubmission() {
                 setTimeout(() => { toast.classList.remove('show'); }, 5000);
             }
 
-            // H. Wipe textarea clear for subsequent user inputs
             this.reset();
         });
     }
@@ -172,30 +126,33 @@ function setupTriviaSession() {
     const savedDate = localStorage.getItem('jd_trivia_date');
     const savedQuestions = localStorage.getItem('jd_trivia_questions');
 
-    // If it's still the same day and we already have saved trivia questions, load them!
+    // Scenario A: User already opened the site today, pull their saved questions
     if (savedDate === todayStr && savedQuestions) {
         activeSessionQuestions = JSON.parse(savedQuestions);
-    } else {
-        // If it's a completely brand new day, look into the 300-question bank
+    } 
+    // Scenario B: Fresh day or data cleared, pool fresh items from questions.js
+    else {
         if (typeof comprehensiveTriviaBank !== 'undefined' && comprehensiveTriviaBank.length >= 3) {
-            // Shuffle and extract 3 unique random questions
+            // Take the real file bank, scramble it, and slice out exactly 3 questions
             const shuffled = [...comprehensiveTriviaBank].sort(() => 0.5 - Math.random());
             activeSessionQuestions = shuffled.slice(0, 3);
             
-            // Lock them down in localStorage for the rest of the day
+            // Lock them into storage for the rest of today
             localStorage.setItem('jd_trivia_date', todayStr);
             localStorage.setItem('jd_trivia_questions', JSON.stringify(activeSessionQuestions));
         } else {
-            // Hardcoded local fallbacks just in case questions.js fails to load
+            // Warning guide if questions.js has a spelling/syntax error or is missing
+            console.error("Trivia Error: comprehensiveTriviaBank array could not be found or has a syntax typo inside questions.js.");
+            
+            // Temporary fail-safe backup so your screen layout doesn't crash completely
             activeSessionQuestions = [
-                { q: "Who was chosen to replace Judas Iscariot?", a: ["Barnabas", "Matthias", "Silas", "Timothy"], c: 1 },
-                { q: "Which book contains 'Jesus wept'?", a: ["Matthew", "Luke", "Mark", "John"], c: 3 },
-                { q: "What language was the New Testament written in?", a: ["Hebrew", "Latin", "Aramaic", "Greek"], c: 3 }
+                { q: "Esther was crowned queen of which ancient world empire?", a: ["Babylonian", "Persian", "Egyptian", "Roman"], c: 1 },
+                { q: "In the book of Acts, which city did the believers first get called 'Christians'?", a: ["Jerusalem", "Antioch", "Damascus", "Ephesus"], c: 1 },
+                { q: "Which spiritual armor element protects our minds according to Ephesians 6?", a: ["Shield of Faith", "Helmet of Salvation", "Belt of Truth", "Breastplate"], c: 1 }
             ];
         }
     }
     
-    // Reset runtime tracking parameters back to zero for the page load session
     currentQuestionIndex = 0;
     usersEarnedScore = 0;
     renderActiveQuestion();
@@ -269,7 +226,6 @@ function displayFinalScoreboard() {
     scoreScreen.style.display = "flex"; 
     
     scoreNumEl.innerText = usersEarnedScore;
-    
     scoreScreen.classList.remove('green-pass', 'red-fail');
     
     if (usersEarnedScore >= 2) {
