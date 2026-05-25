@@ -172,16 +172,21 @@ function setupTriviaSession() {
     const savedDate = localStorage.getItem('jd_trivia_date');
     const savedQuestions = localStorage.getItem('jd_trivia_questions');
 
+    // If it's still the same day and we already have saved trivia questions, load them!
     if (savedDate === todayStr && savedQuestions) {
         activeSessionQuestions = JSON.parse(savedQuestions);
     } else {
+        // If it's a completely brand new day, look into the 300-question bank
         if (typeof comprehensiveTriviaBank !== 'undefined' && comprehensiveTriviaBank.length >= 3) {
+            // Shuffle and extract 3 unique random questions
             const shuffled = [...comprehensiveTriviaBank].sort(() => 0.5 - Math.random());
             activeSessionQuestions = shuffled.slice(0, 3);
             
+            // Lock them down in localStorage for the rest of the day
             localStorage.setItem('jd_trivia_date', todayStr);
             localStorage.setItem('jd_trivia_questions', JSON.stringify(activeSessionQuestions));
         } else {
+            // Hardcoded local fallbacks just in case questions.js fails to load
             activeSessionQuestions = [
                 { q: "Who was chosen to replace Judas Iscariot?", a: ["Barnabas", "Matthias", "Silas", "Timothy"], c: 1 },
                 { q: "Which book contains 'Jesus wept'?", a: ["Matthew", "Luke", "Mark", "John"], c: 3 },
@@ -190,6 +195,9 @@ function setupTriviaSession() {
         }
     }
     
+    // Reset runtime tracking parameters back to zero for the page load session
+    currentQuestionIndex = 0;
+    usersEarnedScore = 0;
     renderActiveQuestion();
 }
 
