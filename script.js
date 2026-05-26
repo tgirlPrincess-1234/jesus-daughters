@@ -1,8 +1,19 @@
-/**
- * JESUS' DAUGHTERS ENGINE - CORE CONTROLLER
- */
+import { initializeApp } from "firebase/app";
+import { getFirestore, collection, onSnapshot, doc, updateDoc, query, orderBy } from "firebase/firestore";
 
-// 1. DYNAMIC RANDOM VERSE API CONTROLLER WITH DAILY FALLBACKS
+// PASTE YOUR ACTUAL KEYS INSIDE THIS CONFIG BLOCK:
+const firebaseConfig = {
+  apiKey: "AIzaSyCAEBHbVXp5IOlQdpl0T-lfAiiyXOxsnus",
+  authDomain: "jd-hub.firebaseapp.com",
+  projectId: "jd-hub",
+  storageBucket: "jd-hub.firebasestorage.app",
+  messagingSenderId: "1038919051259",
+  appId: "1:1038919051259:web:cbd845cb290452f23fcd5e"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
 async function fetchVerse() {
     try {
         const response = await fetch('https://labs.bible.org/api/?passage=random&type=json'); 
@@ -244,6 +255,61 @@ document.addEventListener("DOMContentLoaded", () => {
     fetchVerse();
     initializeCopyFeature();
     initializeSpotifyLink();
-    initializeRealTalkSubmission();
+    function initializeRealTalkSubmission() {
+    const realtalkForm = document.getElementById('realtalk-form');
+    
+    if (realtalkForm) {
+        realtalkForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const textInput = document.getElementById('realtalk-input');
+            const msgText = textInput.value.trim();
+
+            if (!msgText) return;
+
+            const now = new Date();
+            const yy = String(now.getFullYear()).slice(-2);
+            const mm = String(now.getMonth() + 1).padStart(2, '0');
+            const dd = String(now.getDate()).padStart(2, '0');
+            const dateString = `${dd}/${mm}/${yy}`;
+
+            let generatedIdToken = `${dateString} #001`;
+
+            try {
+                // Check the database to see how many posts have already been dropped today
+                const postsContainer = collection(db, "anonymous_posts");
+                const todayQuery = query(postsContainer, where("dateOnlyString", "==", dateString));
+                const querySnapshot = await getDocs(todayQuery);
+                
+                const itemsToday = querySnapshot.size;
+                const nextSequence = String(itemsToday + 1).padStart(3, '0');
+                generatedIdToken = `${dateString} #${nextSequence}`;
+
+                // Send the payload straight up to your Firestore Cloud Database!
+                await addDoc(postsContainer, {
+                    id: generatedIdToken,
+                    text: msgText,
+                    dateOnlyString: dateString,
+                    timestamp: Date.now(),
+                    replies: []
+                });
+
+                // Success Toast Feedback notification
+                const toast = document.getElementById('toast-notification');
+                if (toast) {
+                    toast.textContent = `Dropped! Code: ${generatedIdToken} 🤫`;
+                    toast.classList.add('show');
+                    setTimeout(() => { toast.classList.remove('show'); }, 5000);
+                }
+
+                this.reset();
+
+            } catch (error) {
+                console.error("Cloud upload blocked or failed:", error);
+                alert("Submission dropped locally due to connectivity issues.");
+            }
+        });
+    }
+}
     setupTriviaSession();
 });
