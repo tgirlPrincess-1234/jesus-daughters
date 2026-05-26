@@ -1,5 +1,5 @@
-import { initializeApp } from "firebase/app";
-import { getFirestore, collection, onSnapshot, doc, updateDoc, query, orderBy } from "firebase/firestore";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, collection, addDoc, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 // PASTE YOUR ACTUAL KEYS INSIDE THIS CONFIG BLOCK:
 const firebaseConfig = {
@@ -14,6 +14,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+// 1. DAILY BIBLE VERSE ENGINE
 async function fetchVerse() {
     try {
         const response = await fetch('https://labs.bible.org/api/?passage=random&type=json'); 
@@ -81,12 +82,12 @@ function initializeSpotifyLink() {
     }
 }
 
-// 4. CONNECTED ANONYMOUS PLATFORM SUBMISSION (WITH DATE & SEQUENTIAL COUNTING)
+// 4. CONNECTED ANONYMOUS PLATFORM SUBMISSION
 function initializeRealTalkSubmission() {
     const realtalkForm = document.getElementById('realtalk-form');
     
     if (realtalkForm) {
-        realtalkForm.addEventListener('submit', function(e) {
+        realtalkForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const textInput = document.getElementById('realtalk-input');
@@ -100,34 +101,43 @@ function initializeRealTalkSubmission() {
             const dd = String(now.getDate()).padStart(2, '0');
             const dateString = `${dd}/${mm}/${yy}`;
 
-            let currentFeed = JSON.parse(localStorage.getItem("jds_anon_feed")) || [];
-            const itemsToday = currentFeed.filter(item => item.id.startsWith(dateString)).length;
-            
-            const nextSequence = String(itemsToday + 1).padStart(3, '0');
-            const generatedIdToken = `${dateString} #${nextSequence}`;
+            let generatedIdToken = `${dateString} #001`;
 
-            const newAnonymousEntry = {
-                id: generatedIdToken,
-                text: msgText,
-                replies: []
-            };
+            try {
+                const postsContainer = collection(db, "anonymous_posts");
+                const todayQuery = query(postsContainer, where("dateOnlyString", "==", dateString));
+                const querySnapshot = await getDocs(todayQuery);
+                
+                const itemsToday = querySnapshot.size;
+                const nextSequence = String(itemsToday + 1).padStart(3, '0');
+                generatedIdToken = `${dateString} #${nextSequence}`;
 
-            currentFeed.unshift(newAnonymousEntry);
-            localStorage.setItem("jds_anon_feed", JSON.stringify(currentFeed));
+                await addDoc(postsContainer, {
+                    id: generatedIdToken,
+                    text: msgText,
+                    dateOnlyString: dateString,
+                    timestamp: Date.now(),
+                    replies: []
+                });
 
-            const toast = document.getElementById('toast-notification');
-            if (toast) {
-                toast.textContent = `Dropped! Code: ${generatedIdToken} 🤫`;
-                toast.classList.add('show');
-                setTimeout(() => { toast.classList.remove('show'); }, 5000);
+                const toast = document.getElementById('toast-notification');
+                if (toast) {
+                    toast.textContent = `Dropped! Code: ${generatedIdToken} 🤫`;
+                    toast.classList.add('show');
+                    setTimeout(() => { toast.classList.remove('show'); }, 5000);
+                }
+
+                this.reset();
+
+            } catch (error) {
+                console.error("Cloud upload blocked or failed:", error);
+                alert("Submission dropped locally due to connectivity issues.");
             }
-
-            this.reset();
         });
     }
 }
 
-// 5. DAY-LOCKED TRIVIA PLATFORM ENGINE (ANTI-CHEAT MECHANISM)
+// 5. DAY-LOCKED TRIVIA PLATFORM ENGINE
 let activeSessionQuestions = [];
 let currentQuestionIndex = 0;
 let usersEarnedScore = 0;
@@ -137,25 +147,17 @@ function setupTriviaSession() {
     const savedDate = localStorage.getItem('jd_trivia_date');
     const savedQuestions = localStorage.getItem('jd_trivia_questions');
 
-    // Scenario A: User already opened the site today, pull their saved questions
     if (savedDate === todayStr && savedQuestions) {
         activeSessionQuestions = JSON.parse(savedQuestions);
-    } 
-    // Scenario B: Fresh day or data cleared, pool fresh items from questions.js
-    else {
+    } else {
         if (typeof comprehensiveTriviaBank !== 'undefined' && comprehensiveTriviaBank.length >= 3) {
-            // Take the real file bank, scramble it, and slice out exactly 3 questions
             const shuffled = [...comprehensiveTriviaBank].sort(() => 0.5 - Math.random());
             activeSessionQuestions = shuffled.slice(0, 3);
             
-            // Lock them into storage for the rest of today
             localStorage.setItem('jd_trivia_date', todayStr);
             localStorage.setItem('jd_trivia_questions', JSON.stringify(activeSessionQuestions));
         } else {
-            // Warning guide if questions.js has a spelling/syntax error or is missing
-            console.error("Trivia Error: comprehensiveTriviaBank array could not be found or has a syntax typo inside questions.js.");
-            
-            // Temporary fail-safe backup so your screen layout doesn't crash completely
+            console.error("Trivia Error: comprehensiveTriviaBank array could not be found inside questions.js.");
             activeSessionQuestions = [
                 { q: "Esther was crowned queen of which ancient world empire?", a: ["Babylonian", "Persian", "Egyptian", "Roman"], c: 1 },
                 { q: "In the book of Acts, which city did the believers first get called 'Christians'?", a: ["Jerusalem", "Antioch", "Damascus", "Ephesus"], c: 1 },
@@ -250,66 +252,11 @@ function displayFinalScoreboard() {
     }
 }
 
-// BOOT ENGINE
+// 6. MAIN ENGINE BOOT INITIALIZER
 document.addEventListener("DOMContentLoaded", () => {
     fetchVerse();
     initializeCopyFeature();
     initializeSpotifyLink();
-    function initializeRealTalkSubmission() {
-    const realtalkForm = document.getElementById('realtalk-form');
-    
-    if (realtalkForm) {
-        realtalkForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const textInput = document.getElementById('realtalk-input');
-            const msgText = textInput.value.trim();
-
-            if (!msgText) return;
-
-            const now = new Date();
-            const yy = String(now.getFullYear()).slice(-2);
-            const mm = String(now.getMonth() + 1).padStart(2, '0');
-            const dd = String(now.getDate()).padStart(2, '0');
-            const dateString = `${dd}/${mm}/${yy}`;
-
-            let generatedIdToken = `${dateString} #001`;
-
-            try {
-                // Check the database to see how many posts have already been dropped today
-                const postsContainer = collection(db, "anonymous_posts");
-                const todayQuery = query(postsContainer, where("dateOnlyString", "==", dateString));
-                const querySnapshot = await getDocs(todayQuery);
-                
-                const itemsToday = querySnapshot.size;
-                const nextSequence = String(itemsToday + 1).padStart(3, '0');
-                generatedIdToken = `${dateString} #${nextSequence}`;
-
-                // Send the payload straight up to your Firestore Cloud Database!
-                await addDoc(postsContainer, {
-                    id: generatedIdToken,
-                    text: msgText,
-                    dateOnlyString: dateString,
-                    timestamp: Date.now(),
-                    replies: []
-                });
-
-                // Success Toast Feedback notification
-                const toast = document.getElementById('toast-notification');
-                if (toast) {
-                    toast.textContent = `Dropped! Code: ${generatedIdToken} 🤫`;
-                    toast.classList.add('show');
-                    setTimeout(() => { toast.classList.remove('show'); }, 5000);
-                }
-
-                this.reset();
-
-            } catch (error) {
-                console.error("Cloud upload blocked or failed:", error);
-                alert("Submission dropped locally due to connectivity issues.");
-            }
-        });
-    }
-}
+    initializeRealTalkSubmission();
     setupTriviaSession();
 });
