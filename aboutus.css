@@ -51,12 +51,25 @@ header {
 
 .logo-text { font-weight: 900; font-size: 1.4rem; color: var(--card-dark); letter-spacing: -0.5px; }
 
+/* Navigation Container Configured to Keep Elements Inline */
+nav {
+    display: flex;
+    align-items: center;
+    gap: 14px; /* Perfectly gaps your Home Icon, About Us, and Anonymous */
+}
+
 nav a {
     color: var(--card-dark);
     text-decoration: none;
-    margin-left: 12px;
     font-size: 0.9rem;
     font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Styles the Home Icon specifically */
+nav a i {
+    font-size: 1.1rem; /* Adjusts icon scale to match your text sizes */
 }
 
 nav a.active-nav {
