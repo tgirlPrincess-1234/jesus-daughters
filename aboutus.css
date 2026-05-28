@@ -179,23 +179,34 @@ main {
 }
 
 /* ==========================================================================
-   CLEAN WEB PLATFORM LINKS SECTION (NO CARDS)
+   CLEAN WEB PLATFORM LINKS SECTION (CONVERTED TO DEEP PURPLE FOOTER)
    ========================================================================== */
 .social-directory-section {
     width: 100%;
-    padding: 10px 4px 40px;
+    background-color: var(--card-dark);
+    padding: 40px 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    margin-top: auto;
+}
+
+.footer-content-wrapper {
+    width: 92%;
+    max-width: 500px;
     box-sizing: border-box;
 }
 
 .social-directory-section h2 {
-    color: var(--card-dark);
+    color: var(--accent-pink);
     font-size: 1.35rem;
     font-weight: 800;
     margin-bottom: 6px;
+    margin-top: 0;
 }
 
 .directory-intro {
-    color: var(--card-dark);
+    color: var(--text-muted);
     font-size: 0.95rem;
     opacity: 0.85;
     margin-bottom: 20px;
@@ -209,7 +220,7 @@ main {
 }
 
 .contact-label {
-    color: var(--card-dark);
+    color: var(--text-light);
     font-weight: 800;
     font-size: 1.05rem;
     text-transform: uppercase;
@@ -217,14 +228,14 @@ main {
 }
 
 .social-text-row {
-    color: var(--card-dark);
+    color: var(--text-light);
     text-decoration: none;
     font-size: 1.1rem;
     font-weight: 700;
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    width: max-content;         
+    width: max-content;          
     transition: transform 0.2s ease;
 }
 
@@ -233,7 +244,7 @@ main {
 }
 
 .social-handle {
-    color: #8b3c70;             
+    color: var(--accent-pink);            
     font-weight: 800;
-    border-bottom: 2px dashed rgba(139, 60, 112, 0.4);
+    border-bottom: 2px dashed rgba(226, 138, 197, 0.4);
 }
