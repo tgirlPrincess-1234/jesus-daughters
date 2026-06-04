@@ -144,7 +144,6 @@ let currentQuestionIndex = 0;
 let usersEarnedScore = 0;
 
 function setupTriviaSession() {
-    localStorage.clear();
     const todayStr = new Date().toDateString(); 
     const savedDate = localStorage.getItem('jd_trivia_date');
     const savedQuestions = localStorage.getItem('jd_trivia_questions');
