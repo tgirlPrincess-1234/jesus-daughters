@@ -47,7 +47,7 @@ header {
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
-    gap: 12px; /* Keeps the entire nav menu clear of the logo */
+    gap: 12px;
 }
 
 .logo-container { display: flex; align-items: center; gap: 8px; }
@@ -63,34 +63,47 @@ header {
 
 .logo-text { 
     font-weight: 900; 
-    font-size: 1.15rem; /* Balanced to prevent crowding against the double buttons */
+    font-size: 1.15rem; 
     color: var(--card-dark); 
     letter-spacing: -0.5px; 
     white-space: nowrap;
 }
 
-/* Fixes the overlap by explicitly stacking buttons with space */
+/* Stacks buttons with extra spacing to hold the divider line */
 nav {
     display: flex;
     flex-direction: column;
-    align-items: flex-end; /* Aligns both buttons perfectly to the right side */
-    gap: 6px; /* Injects guaranteed clear space between the two buttons */
+    align-items: flex-end; 
+    gap: 12px; /* Increased gap to give the divider line breathing room */
     flex-shrink: 0;
+    position: relative;
 }
 
 nav a {
-    color: var(--text-light);
-    background-color: var(--card-dark);
+    color: var(--text-light); 
+    background-color: var(--card-dark); 
     text-decoration: none;
-    font-size: 0.8rem;
+    font-size: 0.8rem; 
     font-weight: 700;
-    padding: 6px 14px;
-    border-radius: 20px;
+    padding: 8px 14px; /* Taller padding for a better tap target */
+    border-radius: 20px; 
     text-align: center;
-    min-width: 85px;
+    min-width: 90px; /* Slightly wider for better visual balance */
     box-sizing: border-box;
     display: inline-block;
-    box-shadow: 0 2px 6px rgba(35, 8, 59, 0.15); /* Adds slight depth to clearly separate them */
+    box-shadow: 0 2px 6px rgba(35, 8, 59, 0.15); 
+}
+
+/* This automatically draws the beautiful separating line between the links */
+nav a:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    bottom: -7px; /* Places it exactly in the dead center of the gap */
+    right: 5px;   /* Aligns it perfectly under the pills */
+    width: 80px;  /* Width of the divider line */
+    height: 1px;  /* Sleek, thin line */
+    background-color: var(--accent-pink); /* Uses your beautiful brand pink */
+    opacity: 0.7; /* Makes it soft and elegant, not harsh */
 }
 
 /* Hero Section Style Layout */
