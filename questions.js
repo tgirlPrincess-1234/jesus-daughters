@@ -2,7 +2,7 @@
  * THE DAILY BIBLE TRIVIA SPARK LIBRARY 
  * Scale this list up as large as you want over time!
  */
-const comprehensiveTriviaBank = [
+export const comprehensiveTriviaBank = [
     {
         question: "Who was the first king of Israel?",
         options: ["David", "Saul", "Solomon", "Samuel"],
