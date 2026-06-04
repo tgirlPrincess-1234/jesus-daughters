@@ -144,6 +144,7 @@ let currentQuestionIndex = 0;
 let usersEarnedScore = 0;
 
 function setupTriviaSession() {
+    localStorage.clear();
     const todayStr = new Date().toDateString(); 
     const savedDate = localStorage.getItem('jd_trivia_date');
     const savedQuestions = localStorage.getItem('jd_trivia_questions');
@@ -183,7 +184,9 @@ function renderActiveQuestion() {
     const currentQuiz = activeSessionQuestions[currentQuestionIndex];
     
     qNumberEl.innerText = `Question ${currentQuestionIndex + 1}/3`;
-    questionEl.innerText = currentQuiz.q;
+    
+    // 1. Changed currentQuiz.q to currentQuiz.question
+    questionEl.innerText = currentQuiz.question; 
     optionsContainer.innerHTML = "";
     
     dots.forEach((dot, index) => {
@@ -192,7 +195,8 @@ function renderActiveQuestion() {
 
     let choiceLocked = false;
 
-    currentQuiz.a.forEach((optionText, index) => {
+    // 2. Changed currentQuiz.a to currentQuiz.options
+    currentQuiz.options.forEach((optionText, index) => {
         const btn = document.createElement('button');
         btn.classList.add('option-btn');
         btn.innerText = optionText;
@@ -201,12 +205,13 @@ function renderActiveQuestion() {
             if (choiceLocked) return;
             choiceLocked = true;
             
-            if (index === currentQuiz.c) {
+            // 3. Changed currentQuiz.c to currentQuiz.answer
+            if (index === currentQuiz.answer) {
                 btn.classList.add('correct-flash');
                 usersEarnedScore++;
             } else {
                 btn.classList.add('wrong-flash');
-                optionsContainer.children[currentQuiz.c].classList.add('correct-flash');
+                optionsContainer.children[currentQuiz.answer].classList.add('correct-flash');
             }
             
             setTimeout(() => {
