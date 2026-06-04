@@ -35,33 +35,41 @@ header {
 .logo-link-wrapper {
     text-decoration: none;
     cursor: pointer;
+    flex: 1; /* Gives the text room to stay away from the nav */
 }
 
-.logo-container { display: flex; align-items: center; gap: 12px; }
+.logo-container { display: flex; align-items: center; gap: 8px; }
 
 /* Increased and explicitly dimensioned header logo */
 .brand-logo-img { 
-    width: 46px; 
-    height: 46px; 
+    width: 42px; 
+    height: 42px; 
     border-radius: 50%; 
     background-color: var(--card-dark); 
     object-fit: cover;
     display: block;
 }
 
-.logo-text { font-weight: 900; font-size: 1.4rem; color: var(--card-dark); letter-spacing: -0.5px; }
+/* Slightly shrunk and adjusted text to prevent tight squeezing */
+.logo-text { 
+    font-weight: 900; 
+    font-size: 1.15rem; 
+    color: var(--card-dark); 
+    letter-spacing: -0.5px; 
+    white-space: nowrap;
+}
 
 /* Navigation Container Configured to Keep Elements Inline */
 nav {
     display: flex;
     align-items: center;
-    gap: 14px; /* Perfectly gaps your Home Icon, About Us, and Anonymous */
+    gap: 12px; /* Balanced mobile spacing */
 }
 
 nav a {
     color: var(--card-dark);
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 700;
     display: inline-flex;
     align-items: center;
@@ -69,7 +77,7 @@ nav a {
 
 /* Styles the Home Icon specifically */
 nav a i {
-    font-size: 1.1rem; /* Adjusts icon scale to match your text sizes */
+    font-size: 1.05rem; 
 }
 
 nav a.active-nav {
@@ -121,7 +129,7 @@ main {
    ========================================================================== */
 .mission-section {
     width: 100%;
-    margin-bottom: 24px;
+    margin-bottom: 32px;
     box-sizing: border-box;
 }
 
@@ -176,6 +184,73 @@ main {
 
 .bullet-list li:last-child {
     margin-bottom: 0;           /* Prevents extra padding on the final item */
+}
+
+/* ==========================================================================
+   LEADERS SECTION ARCHITECTURE
+   ========================================================================== */
+.leaders-section {
+    width: 100%;
+    margin-bottom: 40px;
+    box-sizing: border-box;
+}
+
+.leaders-main-title {
+    color: var(--card-dark); 
+    font-size: 1.35rem;
+    font-weight: 800;
+    margin-bottom: 24px;
+    margin-top: 0;
+}
+
+.leader-card {
+    background-color: var(--card-dark);
+    border-radius: 22px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 12px 28px rgba(35, 8, 59, 0.15);
+    box-sizing: border-box;
+    gap: 16px;
+}
+
+.leader-img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    border: 3px solid var(--accent-pink);
+    object-fit: cover;
+}
+
+.leader-info h3 {
+    color: var(--accent-pink);
+    margin: 0 0 4px 0;
+    font-size: 1.2rem;
+    font-weight: 800;
+}
+
+.leader-info h4 {
+    color: var(--text-muted);
+    margin: 0 0 12px 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.leader-info p {
+    color: #ebdff0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.leader-divider {
+    border: 0;
+    height: 2px;
+    background-color: rgba(35, 8, 59, 0.15);
+    margin: 24px auto;
+    width: 60%;
 }
 
 /* ==========================================================================
