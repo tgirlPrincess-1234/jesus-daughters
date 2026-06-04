@@ -28,7 +28,7 @@ header {
     padding: 20px;
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Aligns logo container with the top row of the nav grid */
+    align-items: center; 
     box-sizing: border-box;
     gap: 12px;
 }
@@ -63,16 +63,18 @@ header {
     white-space: nowrap;
 }
 
-/* THE HYBRID ENGINE: Combines vertical stacking with horizontal rows */
+/* THE HYBRID GRID ENGINE: Forces a perfect 2-row layout on all screens */
 nav {
-    display: flex;
-    flex-direction: column; /* Stacks the active page row on top of the button row */
-    align-items: flex-end;  /* Snaps everything clean to the right side */
-    gap: 10px;              /* Clear vertical spacing between the rows */
+    display: grid;
+    grid-template-columns: auto auto; /* Two side-by-side columns for the buttons */
+    justify-items: end; /* Snaps the content beautifully to the right edge */
+    justify-content: end;
+    row-gap: 10px; /* Vertical breathing room between the layers */
+    column-gap: 8px; /* Horizontal cushion between the bottom buttons */
     flex-shrink: 0; 
 }
 
-/* Creates a dedicated row container inside nav if needed, but styles links cleanly */
+/* Default style: Turns inactive linkers into deep purple buttons */
 nav a {
     color: var(--text-light);
     background-color: var(--card-dark);
@@ -86,13 +88,7 @@ nav a {
     justify-content: center;
     box-sizing: border-box;
     box-shadow: 0 2px 6px rgba(35, 8, 59, 0.15);
-}
-
-/* Houses the two bottom buttons side-by-side without overflowing */
-/* Note: CSS targets sibling links to hold them horizontally under the active row */
-nav a:not(.active-nav) {
-    display: inline-flex;
-    margin-left: 6px; /* Injects a clean horizontal gap between the two bottom buttons */
+    white-space: nowrap;
 }
 
 /* Turns the font-awesome Home icon bright white inside its button */
@@ -101,17 +97,18 @@ nav a i {
     color: var(--text-light) !important;
 }
 
-/* THE MAIN CHAMPION: Isolates the Active link completely to its own top layer */
+/* THE MAIN CHAMPION: Forces 'Anonymous' to rule the top row alone */
 nav a.active-nav {
-    display: block;                            /* Forces it onto its own block layer line */
+    grid-column: 1 / span 2; /* Spans across both columns to sit on top */
+    grid-row: 1; /* Anchors firmly to the first row level */
+    justify-self: end; /* Aligns text cleanly from the right side */
+    
     background-color: transparent !important; /* Strips purple background */
     color: var(--card-dark) !important;       /* Brings back original dark text */
     border-bottom: 2px solid var(--card-dark); /* Signature active underline */
     border-radius: 0px;                        /* Flattens bottom edge */
     padding: 0px 0px 2px 0px;                  /* Snugs text closely to the underline */
     box-shadow: none;                          /* Removes button shadow profile */
-    margin-bottom: 4px;                        /* Adds clear space directly under the underline */
-    margin-left: 0 !important;
 }
 
 /* EXTRA PROTECTION FOR VERY SMALL PHONES */
