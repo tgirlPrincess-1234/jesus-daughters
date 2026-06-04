@@ -28,9 +28,9 @@ header {
     padding: 20px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: center; /* Aligns logo container with the top row of the nav grid */
     box-sizing: border-box;
-    gap: 12px; /* Holds strict minimum gap so nav never collides with logo text */
+    gap: 12px;
 }
 
 .logo-link-wrapper {
@@ -63,16 +63,16 @@ header {
     white-space: nowrap;
 }
 
-/* Keeps elements perfectly inline horizontally across the row */
+/* THE HYBRID ENGINE: Combines vertical stacking with horizontal rows */
 nav {
     display: flex;
-    flex-direction: row; /* Arranges everything side-by-side cleanly */
-    align-items: center; 
-    gap: 12px; /* Breathing room between the row links */
+    flex-direction: column; /* Stacks the active page row on top of the button row */
+    align-items: flex-end;  /* Snaps everything clean to the right side */
+    gap: 10px;              /* Clear vertical spacing between the rows */
     flex-shrink: 0; 
 }
 
-/* Default style: Turns all inactive linkers into deep purple buttons */
+/* Creates a dedicated row container inside nav if needed, but styles links cleanly */
 nav a {
     color: var(--text-light);
     background-color: var(--card-dark);
@@ -86,7 +86,13 @@ nav a {
     justify-content: center;
     box-sizing: border-box;
     box-shadow: 0 2px 6px rgba(35, 8, 59, 0.15);
-    transition: all 0.2s ease;
+}
+
+/* Houses the two bottom buttons side-by-side without overflowing */
+/* Note: CSS targets sibling links to hold them horizontally under the active row */
+nav a:not(.active-nav) {
+    display: inline-flex;
+    margin-left: 6px; /* Injects a clean horizontal gap between the two bottom buttons */
 }
 
 /* Turns the font-awesome Home icon bright white inside its button */
@@ -95,23 +101,23 @@ nav a i {
     color: var(--text-light) !important;
 }
 
-/* Strips the button look away ONLY for the active page link (Anonymous) */
+/* THE MAIN CHAMPION: Isolates the Active link completely to its own top layer */
 nav a.active-nav {
-    background-color: transparent !important; /* Removes purple background */
+    display: block;                            /* Forces it onto its own block layer line */
+    background-color: transparent !important; /* Strips purple background */
     color: var(--card-dark) !important;       /* Brings back original dark text */
-    border-bottom: 2px solid var(--card-dark); /* Restores signature active underline */
-    border-radius: 0px;                        /* Flattens the bottom edge */
+    border-bottom: 2px solid var(--card-dark); /* Signature active underline */
+    border-radius: 0px;                        /* Flattens bottom edge */
     padding: 0px 0px 2px 0px;                  /* Snugs text closely to the underline */
     box-shadow: none;                          /* Removes button shadow profile */
+    margin-bottom: 4px;                        /* Adds clear space directly under the underline */
+    margin-left: 0 !important;
 }
 
 /* EXTRA PROTECTION FOR VERY SMALL PHONES */
 @media (max-width: 380px) {
     .logo-text {
-        font-size: 0.95rem; /* Scales text down so it never crowds the links */
-    }
-    nav {
-        gap: 8px; /* Tightens space slightly on tiny screens */
+        font-size: 0.95rem; 
     }
     nav a:not(.active-nav) {
         font-size: 0.75rem;

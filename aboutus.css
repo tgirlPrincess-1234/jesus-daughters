@@ -31,9 +31,9 @@ header {
     padding: 20px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: center; 
     box-sizing: border-box;
-    gap: 12px; /* Holds strict minimum gap so nav never collides with logo text */
+    gap: 12px;
 }
 
 .logo-link-wrapper {
@@ -66,16 +66,18 @@ header {
     white-space: nowrap;
 }
 
-/* Keeps elements perfectly inline horizontally across the row */
+/* THE HYBRID GRID ENGINE: Locks into a tidy 2-row layout on mobile */
 nav {
-    display: flex;
-    flex-direction: row; /* Arranges everything side-by-side cleanly */
-    align-items: center; 
-    gap: 12px; /* Breathing room between the row links */
+    display: grid;
+    grid-template-columns: auto auto; /* Two side-by-side columns for the buttons */
+    justify-items: end; /* Snaps the content beautifully to the right edge */
+    justify-content: end;
+    row-gap: 10px; /* Vertical breathing room between the layers */
+    column-gap: 8px; /* Horizontal cushion between the bottom buttons */
     flex-shrink: 0; 
 }
 
-/* Default style: Turns all inactive linkers into deep purple buttons */
+/* Default style: Turns inactive linkers into deep purple buttons */
 nav a {
     color: var(--text-light);
     background-color: var(--card-dark);
@@ -89,7 +91,7 @@ nav a {
     justify-content: center;
     box-sizing: border-box;
     box-shadow: 0 2px 6px rgba(35, 8, 59, 0.15);
-    transition: all 0.2s ease;
+    white-space: nowrap;
 }
 
 /* Turns the font-awesome Home icon bright white inside its button */
@@ -98,12 +100,16 @@ nav a i {
     color: var(--text-light) !important;
 }
 
-/* Strips the button look away ONLY for the active page link */
+/* THE MAIN CHAMPION: Forces 'About Us' to rule the top row alone */
 nav a.active-nav {
-    background-color: transparent !important; /* Removes purple background */
+    grid-column: 1 / span 2; /* Spans across the grid columns to sit on top */
+    grid-row: 1; /* Anchors firmly to the first row level */
+    justify-self: end; /* Aligns text cleanly from the right side */
+    
+    background-color: transparent !important; /* Strips purple background */
     color: var(--card-dark) !important;       /* Brings back original dark text */
-    border-bottom: 2px solid var(--card-dark); /* Restores signature active underline */
-    border-radius: 0px;                        /* Flattens the bottom edge */
+    border-bottom: 2px solid var(--card-dark); /* Signature active underline */
+    border-radius: 0px;                        /* Flattens bottom edge */
     padding: 0px 0px 2px 0px;                  /* Snugs text closely to the underline */
     box-shadow: none;                          /* Removes button shadow profile */
 }
@@ -111,10 +117,7 @@ nav a.active-nav {
 /* EXTRA PROTECTION FOR VERY SMALL PHONES */
 @media (max-width: 380px) {
     .logo-text {
-        font-size: 0.95rem; /* Scales text down so it never crowds the links */
-    }
-    nav {
-        gap: 8px; /* Tightens space slightly on tiny screens */
+        font-size: 0.95rem; 
     }
     nav a:not(.active-nav) {
         font-size: 0.75rem;
