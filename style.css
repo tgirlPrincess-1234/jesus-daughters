@@ -123,6 +123,7 @@ nav a:not(:last-child)::after {
     width: 100%;
     max-width: 500px;
     min-height: 220px; /* Keeps height consistent during flip */
+    -webkit-tap-highlight-color: transparent; /* Stops mobile blue flash on tap */
 }
 
 /* Modified Verse Card to act as the 3D rotating object */
@@ -133,6 +134,7 @@ nav a:not(:last-child)::after {
     transform-style: preserve-3d;
     transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent; /* Extra mobile tap fix */
 }
 
 /* Class triggered by JavaScript to flip it */
@@ -154,6 +156,11 @@ nav a:not(:last-child)::after {
     padding: 25px;
     background: rgba(255, 255, 255, 0.03); /* Gives it a slight card outline if background is dark */
     border-radius: 12px;
+
+    /* STOPS THE BLUE HIGHLIGHTING / TEXT SELECTION INTERFERENCE */
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
 }
 
 .verse-ref-front {
@@ -176,6 +183,14 @@ nav a:not(:last-child)::after {
 .verse-text { font-size: 1.2rem; font-style: italic; line-height: 1.6; margin-bottom: 15px; color: #fff; text-align: center; }
 .verse-footer { display: flex; justify-content: center; align-items: center; gap: 12px; }
 .verse-ref { font-size: 0.8rem; color: var(--card-dark); background-color: var(--accent-pink); padding: 5px 14px; border-radius: 20px; font-weight: 700; text-transform: uppercase; }
+
+/* Allow selection ONLY on the back text so users can manually copy if they want */
+.card-back .verse-text {
+    user-select: text;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+}
+
 .copy-btn { background: transparent; border: none; color: var(--accent-pink); cursor: pointer; padding: 5px; display: flex; }
 
 /* Micro UX text hints */
