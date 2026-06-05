@@ -158,7 +158,77 @@ let activeSessionQuestions = [];
 let currentQuestionIndex = 0;
 let usersEarnedScore = 0;
 
+// STREAK MANAGEMENT ENGINE
+function getStreakData() {
+    const today = new Date();
+    today.setHours(0,0,0,0); // Clear time metadata
+    
+    let currentStreak = parseInt(localStorage.getItem('jd_streak_count')) || 0;
+    let lastCompletedStr = localStorage.getItem('jd_streak_last_date');
+    let isLitToday = localStorage.getItem('jd_streak_lit_today') === 'true';
+    
+    if (lastCompletedStr) {
+        const lastDate = new Date(lastCompletedStr);
+        lastDate.setHours(0,0,0,0);
+        
+        const diffTime = today - lastDate;
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        
+        if (diffDays > 1) {
+            // Missed a full day -> reset streak
+            currentStreak = 0;
+            isLitToday = false;
+            localStorage.setItem('jd_streak_count', '0');
+            localStorage.setItem('jd_streak_lit_today', 'false');
+        } else if (diffDays === 1) {
+            // New day has dawned -> unlit the badge but save count
+            isLitToday = false;
+            localStorage.setItem('jd_streak_lit_today', 'false');
+        }
+    } else {
+        // Brand new user profile
+        currentStreak = 0;
+        isLitToday = false;
+    }
+    
+    return { count: currentStreak, lit: isLitToday };
+}
+
+function updateStreakUI() {
+    const streakData = getStreakData();
+    const badge = document.getElementById('streak-badge');
+    const countEl = document.getElementById('streak-count');
+    
+    if (badge && countEl) {
+        countEl.innerText = streakData.count;
+        if (streakData.lit) {
+            badge.classList.add('lit');
+        } else {
+            badge.classList.remove('lit');
+        }
+    }
+}
+
+function rewardDailyStreak() {
+    const todayStr = new Date().toDateString();
+    let currentStreak = parseInt(localStorage.getItem('jd_streak_count')) || 0;
+    let lastCompletedStr = localStorage.getItem('jd_streak_last_date');
+    
+    // Only increment once a day
+    if (lastCompletedStr !== todayStr) {
+        currentStreak += 1;
+        localStorage.setItem('jd_streak_count', currentStreak);
+        localStorage.setItem('jd_streak_last_date', todayStr);
+    }
+    
+    localStorage.setItem('jd_streak_lit_today', 'true');
+    updateStreakUI();
+}
+
 function setupTriviaSession() {
+    // Sync and initialize visual streaks immediately on boot
+    updateStreakUI();
+
     const todayStr = new Date().toDateString(); 
     const savedDate = localStorage.getItem('jd_trivia_date');
     const savedQuestions = localStorage.getItem('jd_trivia_questions');
@@ -198,8 +268,6 @@ function renderActiveQuestion() {
     const currentQuiz = activeSessionQuestions[currentQuestionIndex];
     
     qNumberEl.innerText = `Question ${currentQuestionIndex + 1}/3`;
-    
-    // 1. Changed currentQuiz.q to currentQuiz.question
     questionEl.innerText = currentQuiz.question; 
     optionsContainer.innerHTML = "";
     
@@ -209,7 +277,6 @@ function renderActiveQuestion() {
 
     let choiceLocked = false;
 
-    // 2. Changed currentQuiz.a to currentQuiz.options
     currentQuiz.options.forEach((optionText, index) => {
         const btn = document.createElement('button');
         btn.classList.add('option-btn');
@@ -219,7 +286,6 @@ function renderActiveQuestion() {
             if (choiceLocked) return;
             choiceLocked = true;
             
-            // 3. Changed currentQuiz.c to currentQuiz.answer
             if (index === currentQuiz.answer) {
                 btn.classList.add('correct-flash');
                 usersEarnedScore++;
@@ -262,6 +328,9 @@ function displayFinalScoreboard() {
     scoreScreen.classList.remove('green-pass', 'red-fail');
     
     if (usersEarnedScore >= 2) {
+        // Ignite the streak flame because they passed the trivia day!
+        rewardDailyStreak();
+
         scoreScreen.classList.add('green-pass');
         headlineEl.innerText = "Scripture Giant! 🔥";
         commentEl.innerText = "Incredible depth. Your spirit is thoroughly edified!";

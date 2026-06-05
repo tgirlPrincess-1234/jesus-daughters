@@ -234,6 +234,66 @@ p { line-height: 1.5; color: #ebdff0; font-size: 0.95rem; }
 .submit-btn { background: linear-gradient(135deg, var(--accent-pink) 0%, #c96ea9 100%); color: var(--card-dark); border: none; padding: 12px 24px; border-radius: 10px; font-weight: 800; font-size: 0.95rem; align-self: flex-start; }
 
 /* --- TRIVIA SLIDER LAYOUT COMPONENTS --- */
+/* New header layout to keep the streak badge clean and aligned right */
+.trivia-title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.trivia-title-container h2 {
+    margin: 0;
+}
+
+/* Base style for the unlit streak badge */
+.streak-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.04);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 800;
+    transition: all 0.4s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Default unlit lightning bolt (borders only) */
+.streak-bolt {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.25);
+    stroke-width: 2.5;
+    stroke-linejoin: round;
+    transition: all 0.4s ease;
+}
+
+/* Dimmed streak digit when unlit */
+.streak-count {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 1.1rem;
+    transition: all 0.4s ease;
+}
+
+/* ACTIVE LIT UP STATE: Triggered once they smash the daily trivia */
+.streak-badge.lit {
+    background: rgba(253, 224, 71, 0.12);
+    border-color: rgba(253, 224, 71, 0.3);
+    box-shadow: 0 0 15px rgba(253, 224, 71, 0.15);
+}
+
+.streak-badge.lit .streak-bolt {
+    fill: #fde047; /* Bright fire neon yellow */
+    stroke: #fde047;
+    filter: drop-shadow(0 0 4px #fde047);
+}
+
+.streak-badge.lit .streak-count {
+    color: #fde047;
+}
+
+/* Original Trivia Header Styles */
 .trivia-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; font-size: 0.85rem; color: var(--text-muted); font-weight: bold; }
 .dots-container { display: flex; gap: 6px; }
 .dot { width: 8px; height: 8px; background-color: #3f1566; border-radius: 50%; transition: background-color 0.3s; }
