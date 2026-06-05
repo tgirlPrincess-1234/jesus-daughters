@@ -322,7 +322,45 @@ p { line-height: 1.5; color: #ebdff0; font-size: 0.95rem; }
 .score-display { font-size: 3rem; font-weight: 900; margin: 15px 0; letter-spacing: -1px; }
 .retry-btn { background-color: rgba(255,255,255,0.2); border: 2px solid #ffffff; color: #ffffff; padding: 10px 20px; border-radius: 10px; font-weight: 700; cursor: pointer; margin-top: 10px; }
 
-/* Spotify Anchor Card */
+/* --- NEW: Song of the Week Container Styles --- */
+.song-of-the-week-container {
+    margin-top: 15px;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.sotw-header {
+    display: flex;
+    align-items: center;
+}
+
+.sotw-badge {
+    background: #1db954; /* Spotify Green */
+    color: #000000;
+    font-size: 0.75rem;
+    font-weight: 900;
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+}
+
+.sotw-embed-wrapper {
+    width: 100%;
+    min-height: 152px; /* Restricts height perfectly for the mini-player design */
+}
+
+.sotw-embed-wrapper iframe {
+    border: none;
+    display: block;
+}
+
+/* --- Spotify Anchor Card (Your Original Styles) --- */
 .spotify-redirect-card { background-color: #1a052e; border: 2px solid #3f1566; border-radius: 14px; padding: 15px; display: flex; justify-content: space-between; align-items: center; margin-top: 15px; }
 .spotify-info { display: flex; align-items: center; gap: 12px; }
 .music-icon { font-size: 1.6rem; }

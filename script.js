@@ -1,4 +1,5 @@
 import { comprehensiveTriviaBank } from './questions.js';
+import { comprehensiveSongBank } from './sotw.js';
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getFirestore, collection, addDoc, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
@@ -88,12 +89,63 @@ function initializeCopyFeature() {
     }
 }
 
-// 3. SPOTIFY ROUTER
+// 3. SPOTIFY ROUTER & AUTOMATED WEEKLY SPOTLIGHT ENGINE
+function getStartOfWeekString() {
+    const d = new Date();
+    const day = d.getDay(); // 0 = Sunday, 1 = Monday, etc.
+    
+    // Calculate difference back to the most recent Sunday
+    const diff = d.getDate() - day; 
+    const sundayDate = new Date(d.setDate(diff));
+    
+    // Normalize time parameters to prevent mid-day updates
+    sundayDate.setHours(0, 0, 0, 0);
+    return sundayDate.toDateString();
+}
+
+function updateWeeklySongSpotlight() {
+    const embedContainer = document.getElementById('sotw-embed-container');
+    // Ensure the bank exists and has tracks before moving forward
+    if (!embedContainer || !comprehensiveSongBank || comprehensiveSongBank.length === 0) return;
+
+    const currentWeekKey = getStartOfWeekString();
+    const savedWeekKey = localStorage.getItem('jd_sotw_week_key');
+    let targetSongUrl = localStorage.getItem('jd_sotw_song_url');
+
+    // If it's a brand new week or no song is locked yet, roll the dice
+    if (savedWeekKey !== currentWeekKey || !targetSongUrl) {
+        const randomIndex = Math.floor(Math.random() * comprehensiveSongBank.length);
+        targetSongUrl = comprehensiveSongBank[randomIndex];
+
+        // Lock values to browser storage so it doesn't change on refresh
+        localStorage.setItem('jd_sotw_week_key', currentWeekKey);
+        localStorage.setItem('jd_sotw_song_url', targetSongUrl);
+    }
+
+    // Inject the compact Spotify track player dynamically 
+    embedContainer.innerHTML = `
+        <iframe 
+            style="border-radius:12px" 
+            src="${targetSongUrl}" 
+            width="100%" 
+            height="152" 
+            frameBorder="0" 
+            allowfullscreen="" 
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+            loading="lazy">
+        </iframe>
+    `;
+}
+
 function initializeSpotifyLink() {
+    // Run the automated rotation engine immediately on boot
+    updateWeeklySongSpotlight();
+
     const spotifyCard = document.getElementById('spotify-card');
     if (spotifyCard) {
         spotifyCard.addEventListener('click', () => {
-            window.open('https://open.spotify.com/playlist/0tBzBze2jVppMi06hro6jz?si=pCB4w8RvRg6xkA2HKX5png&pi=ElpeASrYTBGTZ', '_blank');
+            // Put your full, private playlist link right here below:
+            window.open('https://open.spotify.com/playlist/0tBzBze2jVppMi06hro6jz?si=1a5b030f152d4370', '_blank');
         });
     }
 }

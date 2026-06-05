@@ -103,20 +103,31 @@
         </section>
 
         <section class="section-card">
-            <h2>Weekly Rotation 🎧</h2>
-            <p>Setting the atmosphere. Tap below to tune in directly to our public playlist on Spotify and level up your vibe.</p>
-            
-            <div class="spotify-redirect-card" id="spotify-card">
-                <div class="spotify-info">
-                    <span class="music-icon">🎵</span>
-                    <div>
-                        <h3>Edify your Spirit</h3>
-                        <p>Curated anthems from Limoblaze, Caleb Gordon, and more.</p>
-                    </div>
-                </div>
-                <span class="play-arrow">▶</span>
+    <h2>Weekly Rotation 🎧</h2>
+    <p>Setting the atmosphere. Tap below to tune in directly to our public playlist on Spotify and level up your vibe.</p>
+    
+    <!-- NEW: Song of the Week Spotlight Component -->
+    <div class="song-of-the-week-container">
+        <div class="sotw-header">
+            <span class="sotw-badge">🔥 SONG OF THE WEEK</span>
+        </div>
+        <div class="sotw-embed-wrapper" id="sotw-embed-container">
+            <!-- JavaScript dynamically injects the iframe track here -->
+        </div>
+    </div>
+    
+    <!-- Your Original Playlist Redirect Card -->
+    <div class="spotify-redirect-card" id="spotify-card">
+        <div class="spotify-info">
+            <span class="music-icon">🎵</span>
+            <div>
+                <h3>Edify your Spirit</h3>
+                <p>Curated anthems from Limoblaze, Caleb Gordon, and more.</p>
             </div>
-        </section>
+        </div>
+        <span class="play-arrow">▶</span>
+    </div>
+</section>
     </main>
 
     <script type="module" src="script.js?v=20260606"></script>
