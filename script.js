@@ -108,19 +108,18 @@ function updateWeeklySongSpotlight() {
     // Ensure the bank exists and has tracks before moving forward
     if (!embedContainer || !comprehensiveSongBank || comprehensiveSongBank.length === 0) return;
 
-    const currentWeekKey = getStartOfWeekString();
-    const savedWeekKey = localStorage.getItem('jd_sotw_week_key');
-    let targetSongUrl = localStorage.getItem('jd_sotw_song_url');
+    const currentWeekKey = getStartOfWeekString(); // e.g., "Sun Jun 07 2026"
 
-    // If it's a brand new week or no song is locked yet, roll the dice
-    if (savedWeekKey !== currentWeekKey || !targetSongUrl) {
-        const randomIndex = Math.floor(Math.random() * comprehensiveSongBank.length);
-        targetSongUrl = comprehensiveSongBank[randomIndex];
-
-        // Lock values to browser storage so it doesn't change on refresh
-        localStorage.setItem('jd_sotw_week_key', currentWeekKey);
-        localStorage.setItem('jd_sotw_song_url', targetSongUrl);
+    // --- NEW: SEEDED PSEUDO-RANDOM ALGORITHM ---
+    // This turns the week text into a consistent number unique to this specific week
+    let hash = 0;
+    for (let i = 0; i < currentWeekKey.length; i++) {
+        hash = currentWeekKey.charCodeAt(i) + ((hash << 5) - hash);
     }
+    // Force the hash to be a positive index within our song bank length
+    const deterministicIndex = Math.abs(hash) % comprehensiveSongBank.length;
+    const targetSongUrl = comprehensiveSongBank[deterministicIndex];
+    // --------------------------------------------
 
     // Inject the compact Spotify track player dynamically 
     embedContainer.innerHTML = `
