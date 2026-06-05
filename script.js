@@ -280,3 +280,13 @@ document.addEventListener("DOMContentLoaded", () => {
     initializeRealTalkSubmission();
     setupTriviaSession();
 });
+
+// Force mobile browsers to listen for the tap event
+document.addEventListener('DOMContentLoaded', () => {
+    const card = document.getElementById('verse-card-inner');
+    if (card) {
+        card.addEventListener('click', () => {
+            card.classList.toggle('flipped');
+        });
+    }
+});
