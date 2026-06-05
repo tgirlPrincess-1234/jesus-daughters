@@ -160,9 +160,9 @@ function setupTriviaSession() {
         } else {
             console.error("Trivia Error: comprehensiveTriviaBank array could not be found inside questions.js.");
             activeSessionQuestions = [
-                { q: "Esther was crowned queen of which ancient world empire?", a: ["Babylonian", "Persian", "Egyptian", "Roman"], c: 1 },
-                { q: "In the book of Acts, which city did the believers first get called 'Christians'?", a: ["Jerusalem", "Antioch", "Damascus", "Ephesus"], c: 1 },
-                { q: "Which spiritual armor element protects our minds according to Ephesians 6?", a: ["Shield of Faith", "Helmet of Salvation", "Belt of Truth", "Breastplate"], c: 1 }
+                { question: "Esther was crowned queen of which ancient world empire?", options: ["Babylonian", "Persian", "Egyptian", "Roman"], answer: 1 },
+                { question: "In the book of Acts, which city did the believers first get called 'Christians'?", options: ["Jerusalem", "Antioch", "Damascus", "Ephesus"], answer: 1 },
+                { question: "Which spiritual armor element protects our minds according to Ephesians 6?", options: ["Shield of Faith", "Helmet of Salvation", "Belt of Truth", "Breastplate"], answer: 1 }
             ];
         }
     }
