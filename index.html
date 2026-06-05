@@ -24,19 +24,31 @@
     </header>
 
     <section class="hero-section">
-        <div class="verse-card">
-            <p class="verse-text" id="bible-verse">Loading today's fire... 🔥</p>
-            <div class="verse-footer">
-                <span class="verse-ref" id="bible-ref">Please wait</span>
-                <button class="copy-btn" id="copy-btn" title="Copy Verse">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                    </svg>
-                </button>
+    <div class="verse-card-container">
+        <div class="verse-card" id="verse-card-inner" onclick="toggleCardFlip()">
+            
+            <div class="card-face card-front">
+                <span class="verse-ref-front" id="bible-ref-front">Loading...</span>
+                <span class="tap-hint">Tap to reveal verse ✨</span>
             </div>
+            
+            <div class="card-face card-back">
+                <p class="verse-text" id="bible-verse">Loading today's fire... 🔥</p>
+                <div class="verse-footer">
+                    <span class="verse-ref" id="bible-ref">Please wait</span>
+                    <button class="copy-btn" id="copy-btn" title="Copy Verse">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                    </button>
+                </div>
+                <span class="tap-hint back-hint">Tap to hide</span>
+            </div>
+
         </div>
-    </section>
+    </div>
+</section>
 
     <main>
         <section class="section-card dynamic-gradient-border">

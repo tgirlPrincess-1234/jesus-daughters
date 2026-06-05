@@ -48,26 +48,41 @@ async function fetchVerse() {
         }
 
         finalVerseText = finalVerseText.replace(/<\/?[^>]+(>|$)/g, "").trim().replace(/\s+/g, ' ');
+        
+        // Populate front reference, back text, and back reference
+        document.getElementById('bible-ref-front').innerText = finalVerseRef;
         document.getElementById('bible-verse').innerText = `"${finalVerseText}"`;
         document.getElementById('bible-ref').innerText = finalVerseRef;
 
     } catch (error) {
+        document.getElementById('bible-ref-front').innerText = "1 Timothy 4:12";
         document.getElementById('bible-verse').innerText = "Don’t let anyone look down on you because you are young, but set an example...";
         document.getElementById('bible-ref').innerText = "1 Timothy 4:12";
     }
 }
 
-// 2. CLIPBOARD CONTROLLER
+// 2. FLASHCARD FLIP CONTROLLER
+function toggleCardFlip() {
+    const cardInner = document.getElementById('verse-card-inner');
+    cardInner.classList.toggle('flipped');
+}
+
+// 3. CLIPBOARD CONTROLLER
 function initializeCopyFeature() {
     const copyBtn = document.getElementById('copy-btn');
     const toast = document.getElementById('toast-notification');
     
     if (copyBtn) {
-        copyBtn.addEventListener('click', function() {
+        copyBtn.addEventListener('click', function(e) {
+            // CRITICAL: Prevents the card from flipping back over when clicking the copy button!
+            e.stopImmediatePropagation(); 
+            
             const fullContent = document.getElementById('bible-verse').innerText + " - " + document.getElementById('bible-ref').innerText;
             navigator.clipboard.writeText(fullContent).then(() => {
-                toast.classList.add('show');
-                setTimeout(() => { toast.classList.remove('show'); }, 3000);
+                if (toast) {
+                    toast.classList.add('show');
+                    setTimeout(() => { toast.classList.remove('show'); }, 3000);
+                }
             });
         });
     }
