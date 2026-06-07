@@ -527,5 +527,500 @@ export const comprehensiveTriviaBank = [
         question: "What was the very first thing God created in Genesis chapter 1?",
         options: ["The sky", "The dry land", "Light", "Plants"],
         answer: 2 // Light
+    },
+    {
+        question: "What was the name of the servant whose ear Peter cut off in the Garden of Gethsemane?",
+        options: ["Malchus", "Cornelius", "Marcus", "Theophilus"],
+        answer: 0 // Malchus
+    },
+    {
+        question: "Which prophet prophesied that Jesus would be born in Bethlehem?",
+        options: ["Isaiah", "Micah", "Zechariah", "Malachi"],
+        answer: 1 // Micah
+    },
+    {
+        question: "What did Elisha throw into the Jordan River to make a lost iron ax head float?",
+        options: ["A handful of salt", "A piece of wood", "His mantle", "A leather strap"],
+        answer: 1 // A piece of wood
+    },
+    {
+        question: "How many spies did Joshua send to secretly scope out the city of Jericho?",
+        options: ["Two", "Three", "Seven", "Twelve"],
+        answer: 0 // Two
+    },
+    {
+        question: "Who was the first person to see the risen Jesus on Easter morning?",
+        options: ["Simon Peter", "John", "Mary Magdalene", "His mother Mary"],
+        answer: 2 // Mary Magdalene
+    },
+    {
+        question: "Which book of the Bible explicitly mentions the stories of the 'Behemoth' and 'Leviathan'?",
+        options: ["Genesis", "Psalms", "Isaiah", "Job"],
+        answer: 3 // Job
+    },
+    {
+        question: "What was the name of the woman who hid the Israelite spies in Jericho?",
+        options: ["Rahab", "Ruth", "Deborah", "Michal"],
+        answer: 0 // Rahab
+    },
+    {
+        question: "Which of the seven churches in Revelation is called out for being 'lukewarm'?",
+        options: ["Ephesus", "Smyrna", "Sardis", "Laodicea"],
+        answer: 3 // Laodicea
+    },
+    {
+        question: "What was the name of the left-handed judge who delivered Israel by defeating King Eglon?",
+        options: ["Ehud", "Othniel", "Gideon", "Jephthah"],
+        answer: 0 // Ehud
+    },
+    {
+        question: "On what day of the week did the Holy Spirit descend upon the apostles in the Upper Room?",
+        options: ["The Feast of Passover", "The Day of Pentecost", "The Day of Atonement", "The Feast of Tabernacles"],
+        answer: 1 // The Day of Pentecost
+    },
+    {
+        question: "Who was Moses' sister, who led the women in dancing after crossing the Red Sea?",
+        options: ["Miriam", "Hannah", "Elisheba", "Zipporah"],
+        answer: 0 // Miriam
+    },
+    {
+        question: "What was the name of the valley where the sun stood still for a whole day during Joshua's battle?",
+        options: ["The Valley of Elah", "The Valley of Achor", "The Valley of Ajalon", "The Valley of Jezreel"],
+        answer: 2 // The Valley of Ajalon
+    },
+    {
+        question: "Which New Testament book is written by the brother of Jude and consists of only one chapter?",
+        options: ["Philemon", "2 John", "3 John", "Jude"],
+        answer: 3 // Jude
+    },
+    {
+        question: "What did God promise to give Abraham as an inheritance, defining much of the Old Testament history?",
+        options: ["The land of Canaan", "The treasures of Egypt", "The kingdom of Babylon", "The trade routes of Tyre"],
+        answer: 0 // The land of Canaan
+    },
+    {
+        question: "Who was the master of the apostle Paul, under whom he studied Jewish law in Jerusalem?",
+        options: ["Gamaliel", "Caiaphas", "Nicodemus", "Ananias"],
+        answer: 0 // Gamaliel
+    },
+    {
+        question: "What was the name of King David's eldest son who rebelled against him and tried to take his throne?",
+        options: ["Solomon", "Adonijah", "Absalom", "Amnon"],
+        answer: 2 // Absalom
+    },
+    {
+        question: "Which prophet ran a race against King Ahab's chariot and won by the power of God?",
+        options: ["Elijah", "Elisha", "Samuel", "Nathan"],
+        answer: 0 // Elijah
+    },
+    {
+        question: "What city was Paul traveling from when he saw the blinding light on the road to Damascus?",
+        options: ["Antioch", "Jerusalem", "Tarsus", "Ephesus"],
+        answer: 1 // Jerusalem
+    },
+    {
+        question: "Who was the giant king of Bashan whose iron bedstead was famously preserved?",
+        options: ["Goliath", "Og", "Sihon", "Agag"],
+        answer: 1 // Og
+    },
+    {
+        question: "Which of the four Gospels records the story of the wise men visiting the young Jesus?",
+        options: ["Matthew", "Mark", "Luke", "John"],
+        answer: 0 // Matthew
+    },
+    {
+        question: "What was the name of the pool in Jerusalem where Jesus healed a paralyzed man who had been infirm for 38 years?",
+        options: ["Pool of Siloam", "Pool of Bethesda", "Pool of Gihon", "Pool of Hezekiah"],
+        answer: 1 // Pool of Bethesda
+    },
+    {
+        question: "Who was chosen by cast lots to replace Judas Iscariot as the twelfth apostle?",
+        options: ["Barnabas", "Matthias", "Silas", "Timothy"],
+        answer: 1 // Matthias
+    },
+    {
+        question: "What did the prophet Isaiah see flying around the throne of God in his vision in chapter 6?",
+        options: ["Cherubim", "Seraphim", "Archangels", "Flaming wheels"],
+        answer: 1 // Seraphim
+    },
+    {
+        question: "Which judge tested God's call using a wool fleece and the morning dew?",
+        options: ["Samson", "Gideon", "Jephthah", "Barak"],
+        answer: 1 // Gideon
+    },
+    {
+        question: "What was the name of Moses' wife, whom he met in the land of Midian?",
+        options: ["Zipporah", "Miriam", "Hagar", "Keturah"],
+        answer: 0 // Zipporah
+    },
+    {
+        question: "Which New Testament book focuses heavily on the tongue, comparing it to a small rudder that guides a massive ship?",
+        options: ["Galatians", "Hebrews", "James", "1 Peter"],
+        answer: 2 // James
+    },
+    {
+        question: "Who was the King of Salem and priest of God Most High who met Abraham after his victory?",
+        options: ["Melchizedek", "Abimelech", "Chedorlaomer", "Jethro"],
+        answer: 0 // Melchizedek
+    },
+    {
+        question: "How many people were saved on board Noah’s ark during the great flood?",
+        options: ["2", "4", "8", "12"],
+        answer: 2 // 8
+    },
+    {
+        question: "Which apostle was bit by a viper on the island of Malta but suffered no ill effects?",
+        options: ["Peter", "Paul", "John", "Barnabas"],
+        answer: 1 // Paul
+    },
+    {
+        question: "What did King Belshazzar see during his feast that caused his knees to knock together in fear?",
+        options: ["A chariot of fire", "An angel with a sword", "A hand writing on the plaster wall", "The temple vessels turning to blood"],
+        answer: 2 // A hand writing on the plaster wall
+    },
+    {
+        question: "Who was the father of King Saul, the first king of Israel?",
+        options: ["Kish", "Jesse", "Abner", "Ner"],
+        answer: 0 // Kish
+    },
+    {
+        question: "Which book contains the verse: 'For I know the plans I have for you, declares the Lord...'?",
+        options: ["Isaiah", "Jeremiah", "Ezekiel", "Daniel"],
+        answer: 1 // Jeremiah
+    },
+    {
+        question: "What was the name of the man who was forced by Roman soldiers to help carry Jesus' cross?",
+        options: ["Simon of Cyrene", "Joseph of Arimathea", "Nicodemus", "Rufus"],
+        answer: 0 // Simon of Cyrene
+    },
+    {
+        question: "How many times did the prophet Elisha tell Naaman the leper to wash in the Jordan River to be cleansed?",
+        options: ["Once", "Three times", "Seven times", "Twelve times"],
+        answer: 2 // Seven times
+    },
+    {
+        question: "Which city did the believers flee to when intense persecution broke out after Stephen's death?",
+        options: ["Antioch", "Rome", "Alexandria", "Athens"],
+        answer: 0 // Antioch
+    },
+    {
+        question: "What did Jacob dream about when he slept with a stone for a pillow at Bethel?",
+        options: ["A burning bush", "A ladder reaching up to heaven", "Seven thin cows eating fat cows", "The sun, moon, and eleven stars"],
+        answer: 1 // A ladder reaching up to heaven
+    },
+    {
+        question: "Who wrote the New Testament book of Romans?",
+        options: ["Peter", "Paul", "Luke", "James"],
+        answer: 1 // Paul
+    },
+    {
+        question: "What is the name of the valley where Ezekiel saw a vision of a field of dry bones coming back to life?",
+        options: ["Valley of Dry Bones", "Valley of Decision", "Valley of Vision", "The text just specifies a valley"],
+        answer: 3 // The text just specifies a valley
+    },
+    {
+        question: "Which of the disciples was famously known as 'the Zealot'?",
+        options: ["Simon", "Judas", "Thomas", "Bartholomew"],
+        answer: 0 // Simon
+    },
+    {
+        question: "What was the name of the mountain where Elijah challenged the 450 prophets of Baal?",
+        options: ["Mount Sinai", "Mount Carmel", "Mount Nebo", "Mount Ararat"],
+        answer: 1 // Mount Carmel
+    },
+    {
+        question: "Who was the wealthy member of the Sanhedrin who provided his own new tomb for Jesus' burial?",
+        options: ["Nicodemus", "Gamaliel", "Joseph of Arimathea", "Zacchaeus"],
+        answer: 2 // Joseph of Arimathea
+    },
+    {
+        question: "How did the prophet Ezekiel symbolize the upcoming siege of Jerusalem to the people?",
+        options: ["By drawing it on a clay brick", "By breaking a pottery flask", "By wearing an iron yoke", "By hiding a linen belt in a rock"],
+        answer: 0 // By drawing it on a clay brick
+    },
+    {
+        question: "What was the occupation of Aquila and Priscilla, who hosted Paul in Corinth?",
+        options: ["Fishermen", "Tax Collectors", "Tentmakers", "Silversmiths"],
+        answer: 2 // Tentmakers
+    },
+    {
+        question: "Which King of Judah had his life extended by 15 years after praying to God during a terminal illness?",
+        options: ["Josiah", "Hezekiah", "Uzziah", "Rehoboth"],
+        answer: 1 // Hezekiah
+    },
+    {
+        question: "What parameter does the writer of Hebrews use to define faith in chapter 11?",
+        options: ["The evidence of things seen", "The substance of things hoped for", "The mastery of sacred text", "The absolute absence of doubt"],
+        answer: 1 // The substance of things hoped for
+    },
+    {
+        question: "Who was the Roman centurion whose household became the first Gentile converts to receive the Holy Spirit?",
+        options: ["Cornelius", "Julius", "Festus", "Publius"],
+        answer: 0 // Cornelius
+    },
+    {
+        question: "What did the high priest Hilkiah find inside the Temple during King Josiah's renovations?",
+        options: ["The lost Ark of the Covenant", "The Book of the Law", "The golden altar of incense", "A hoard of hidden gold"],
+        answer: 1 // The Book of the Law
+    },
+    {
+        question: "Which New Testament letter is explicitly written to Jewish Christians scattered across the nations, rather than a single local church city?",
+        options: ["Romans", "Galatians", "Hebrews", "Ephesians"],
+        answer: 2 // Hebrews
+    },
+    {
+        question: "What was the name of the sister of Martha and Lazarus who sat at Jesus' feet listening to Him speak?",
+        options: ["Mary", "Salome", "Joanna", "Elisabeth"],
+        answer: 0 // Mary
+    },
+    {
+        question: "Which book of the Old Testament ends with a prophecy that Elijah the prophet would return before the great day of the Lord?",
+        options: ["Malachi", "Zechariah", "Haggai", "Zephaniah"],
+        answer: 0 // Malachi
+    },
+    {
+        question: "What was the name of the tower where eighteen people were killed when it collapsed on them?",
+        options: ["The Tower of Babel", "The Tower of David", "The Tower of Siloam", "The Tower of Shechem"],
+        answer: 2 // The Tower of Siloam
+    },
+    {
+        question: "Which of King Saul's daughters did David marry after bringing the pharaoh-like bounty of Philistine foreskins?",
+        options: ["Merab", "Michal", "Ahinoam", "Abigail"],
+        answer: 1 // Michal
+    },
+    {
+        question: "What miracle did Elisha perform to help a poor prophet's widow pay off her urgent debts?",
+        options: ["Multiplied her small jar of oil", "Turned river water into silver", "Multiplied her remaining loaves of bread", "Found a gold coin in a fish's mouth"],
+        answer: 0 // Multiplied her small jar of oil
+    },
+    {
+        question: "Which Roman procurator trembled with fear as Paul reasoned about righteousness and the coming judgment?",
+        options: ["Festus", "Felix", "Gallio", "Agrippa"],
+        answer: 1 // Felix
+    },
+    {
+        question: "Which tribe of Israel was almost completely wiped out during a bitter civil war in the book of Judges?",
+        options: ["Dan", "Benjamin", "Reuben", "Simeon"],
+        answer: 1 // Benjamin
+    },
+    {
+        question: "What specific type of wood did God command Noah to use when constructing the ark?",
+        options: ["Cedar wood", "Gopher wood", "Oak wood", "Olive wood"],
+        answer: 1 // Gopher wood
+    },
+    {
+        question: "Who was the father of the major prophet Isaiah?",
+        options: ["Amoz", "Amos", "Hilkiah", "Baruch"],
+        answer: 0 // Amoz
+    },
+    {
+        question: "Which disciple did Jesus call an 'Israelite in whom there is no deceit' under the fig tree?",
+        options: ["Nathanael", "Philip", "Thomas", "Thaddaeus"],
+        answer: 0 // Nathanael
+    },
+    {
+        question: "What was the name of the golden idol that Aaron fashioned for the Israelites while Moses was on the mountain?",
+        options: ["A bronze serpent", "A golden calf", "An altar of Baal", "An Asherah pole"],
+        answer: 1 // A golden calf
+    },
+    {
+        question: "Which Old Testament book details a severe plague of locusts as a warning of the Day of the Lord?",
+        options: ["Joel", "Amos", "Obadiah", "Micah"],
+        answer: 0 // Joel
+    },
+    {
+        question: "What did the high priest Eli assume was wrong with Hannah when she was praying silently for a child?",
+        options: ["She was losing her mind", "She was deep in a trance", "She was drunk", "She was under a curse"],
+        answer: 2 // She was drunk
+    },
+    {
+        question: "Who was the first person explicitly mentioned in the Bible to build a city?",
+        options: ["Cain", "Enoch", "Nimrod", "Noah"],
+        answer: 0 // Cain
+    },
+    {
+        question: "Which letter did Paul write to express intense joy, despite being locked up in a Roman prison?",
+        options: ["Galatians", "Ephesians", "Philippians", "Colossians"],
+        answer: 2 // Philippians
+    },
+    {
+        question: "What was the name of the field bought with Judas' betrayal money, later called the 'Field of Blood'?",
+        options: ["Akeldama", "Golgotha", "Gethsemane", "Boachim"],
+        answer: 0 // Akeldama
+    },
+    {
+        question: "Which king of northern Israel was notorious for driving his war chariot furiously like a madman?",
+        options: ["Jehu", "Ahab", "Joram", "Baasha"],
+        answer: 0 // Jehu
+    },
+    {
+        question: "What was the name of the young boy prince hidden in the Temple for six years to escape Queen Athaliah?",
+        options: ["Joash", "Josiah", "Hezekiah", "Manasseh"],
+        answer: 0 // Joash
+    },
+    {
+        question: "Which of the seven churches in Revelation did Jesus commend for enduring where 'Satan's throne' is?",
+        options: ["Pergamum", "Thyatira", "Sardis", "Philadelphia"],
+        answer: 0 // Pergamum
+    },
+    {
+        question: "What object did the prophet Jeremiah hide in a rock crevice by the Euphrates River until it was ruined?",
+        options: ["A linen loincloth", "An iron yoke", "A clay jar", "A leather scroll"],
+        answer: 0 // A linen loincloth
+    },
+    {
+        question: "Who was the father of James and John, the two disciples known as the 'Sons of Thunder'?",
+        options: ["Zebedee", "Alpheus", "Jonas", "Cleopas"],
+        answer: 0 // Zebedee
+    },
+    {
+        question: "Which prophet had a vision of four distinct chariots coming out from between two mountains of bronze?",
+        options: ["Zechariah", "Haggai", "Malachi", "Habakkuk"],
+        answer: 0 // Zechariah
+    },
+    {
+        question: "What was the name of the sorcerer in Samaria who tried to buy the power of the Holy Spirit with money?",
+        options: ["Simon Magus", "Elymas", "Bar-Jesus", "Demas"],
+        answer: 0 // Simon Magus
+    },
+    {
+        question: "How many distinct pieces of armor are listed in the 'Armor of God' passage in Ephesians 6?",
+        options: ["Four", "Five", "Six", "Seven"],
+        answer: 2 // Six (Belt, Breastplate, Shoes, Shield, Helmet, Sword)
+    },
+    {
+        question: "What did Samson use to catch 300 foxes, which he then used to burn down the Philistines' grain fields?",
+        options: ["Torches tied to their tails", "Ropes and leather traps", "Netting structures", "The text doesn't specify how he caught them"],
+        answer: 0 // Torches tied to their tails
+    },
+    {
+        question: "Which king of Babylon threw Shadrach, Meshach, and Abednego into the blazing fiery furnace?",
+        options: ["Belshazzar", "Nebuchadnezzar", "Darius", "Cyrus"],
+        answer: 1 // Nebuchadnezzar
+    },
+    {
+        question: "What was the name of the specific mountain region where Abraham went to sacrifice his son Isaac?",
+        options: ["Mount Sinai", "The land of Moriah", "Mount Nebo", "The hills of Hebron"],
+        answer: 1 // The land of Moriah
+    },
+    {
+        question: "Who was the female helper and servant named Phoebe praised by Paul at the end of his letter to the Romans?",
+        options: ["A deaconess of the church at Cenchreae", "A financial provider only", "A close relative of Peter", "A prophetess from Corinth"],
+        answer: 0 // A deaconess of the church at Cenchreae
+    },
+    {
+        question: "What physical affliction did God strike Miriam with after she and Aaron opposed Moses' leadership?",
+        options: ["Blindness", "Leprosy", "Muteness", "Paralysis"],
+        answer: 1 // Leprosy
+    },
+    {
+        question: "Which of the Old Testament minor prophetic books contains only a single chapter focusing entirely on Edom?",
+        options: ["Obadiah", "Jonah", "Micah", "Nahum"],
+        answer: 0 // Obadiah
+    },
+    {
+        question: "What was the name of the High Priest's father-in-law who also interrogated Jesus on the night of His arrest?",
+        options: ["Annas", "Caiaphas", "Gamaliel", "Eleazar"],
+        answer: 0 // Annas
+    },
+    {
+        question: "How many times did the child Samuel hear God calling his name before Eli realized it was the Lord?",
+        options: ["Two times", "Three times", "Four times", "Seven times"],
+        answer: 1 // Three times
+    },
+    {
+        question: "Which missionary companion accompanied Paul on his very first missionary journey across Cyprus?",
+        options: ["Silas", "Barnabas", "Timothy", "Luke"],
+        answer: 1 // Barnabas
+    },
+    {
+        question: "What was the name of the servant girl who opened the door for Peter after his miraculous angel jailbreak?",
+        options: ["Rhoda", "Lydia", "Damaris", "Chloe"],
+        answer: 0 // Rhoda
+    },
+    {
+        question: "Which Old Testament book contains the famous line: 'To everything there is a season, a time for every purpose'?",
+        options: ["Proverbs", "Ecclesiastes", "Song of Solomon", "Isaiah"],
+        answer: 1 // Ecclesiastes
+    },
+    {
+        question: "What item did Gideon's small army of 300 men hold in their hands alongside their trumpets when they ambushed Midian?",
+        options: ["Torches inside empty pitchers", "Bronze shields", "Iron swords", "Wooden spears"],
+        answer: 0 // Torches inside empty pitchers
+    },
+    {
+        question: "Who was the grandfather of King David, born to Ruth and Boaz?",
+        options: ["Jesse", "Obed", "Salmon", "Elimelech"],
+        answer: 1 // Obed
+    },
+    {
+        question: "Which major prophet spent over a year lying on his side to visually symbolize the upcoming siege of Jerusalem?",
+        options: ["Isaiah", "Jeremiah", "Ezekiel", "Daniel"],
+        answer: 2 // Ezekiel
+    },
+    {
+        question: "Who did King David hire to supply cedar logs and craftsmen to construct his royal palace in Jerusalem?",
+        options: ["Hiram, King of Tyre", "The Pharaoh of Egypt", "The stonecutters of Moab", "The kings of Syria"],
+        answer: 0 // Hiram, King of Tyre
+    },
+    {
+        question: "Which New Testament book provides a deep comparison between the Priesthood of Jesus and the mysterious Melchizedek?",
+        options: ["Romans", "Galatians", "Hebrews", "Revelation"],
+        answer: 2 // Hebrews
+    },
+    {
+        question: "What did the prophet Elisha throw into the spring of water at Jericho to permanently heal its toxic supply?",
+        options: ["A handful of salt", "A piece of sacred wood", "His prophetic mantle", "Flour from a widow's jar"],
+        answer: 0 // A handful of salt
+    },
+    {
+        question: "Who was the father of the twin brothers Jacob and Esau?",
+        options: ["Abraham", "Isaac", "Laban", "Ishmael"],
+        answer: 1 // Isaac
+    },
+    {
+        question: "What sign did the angel Gabriel give to Zechariah to prove that his wife Elizabeth would bear John the Baptist?",
+        options: ["He would be struck blind", "He would be unable to speak", "He would fall into a deep sleep", "His staff would blossom"],
+        answer: 1 // He would be unable to speak
+    },
+    {
+        question: "Which wicked queen of Israel swore a deadly vow to hunt down and kill the prophet Elijah?",
+        options: ["Athaliah", "Jezebel", "Vashti", "Herodias"],
+        answer: 1 // Jezebel
+    },
+    {
+        question: "What was the name of the sorcerer who opposed Paul in Paphos and was temporarily struck blind as a result?",
+        options: ["Elymas", "Simon Magus", "Demas", "Alexander"],
+        answer: 0 // Elymas
+    },
+    {
+        question: "Which tribe of Israel did the first king of Israel, Saul, belong to?",
+        options: ["Judah", "Ephraim", "Benjamin", "Levi"],
+        answer: 2 // Benjamin
+    },
+    {
+        question: "What unique item was laid out overnight by Gideon to confirm God's promise to save Israel by his hand?",
+        options: ["A piece of raw meat", "A wool fleece", "A wooden staff", "A leather sandal"],
+        answer: 1 // A wool fleece
+    },
+    {
+        question: "Who was the Roman emperor during the historical timeframe of Jesus' active public ministry?",
+        options: ["Caesar Augustus", "Tiberius Caesar", "Nero", "Caligula"],
+        answer: 1 // Tiberius Caesar
+    },
+    {
+        question: "What is the final book of the Old Testament section in the Bible?",
+        options: ["Zechariah", "Haggai", "Malachi", "Zephaniah"],
+        answer: 2 // Malachi
+    },
+    {
+        question: "Which prophet had a dramatic vision of a flying scroll that was twenty cubits long and ten cubits wide?",
+        options: ["Zechariah", "Haggai", "Malachi", "Amos"],
+        answer: 0 // Zechariah
+    },
+    {
+        question: "Who was the father of King Saul, the first anointed king over Israel?",
+        options: ["Kish", "Jesse", "Abner", "Ner"],
+        answer: 0 // Kish
     }
 ];
